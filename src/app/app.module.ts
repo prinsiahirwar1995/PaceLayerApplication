@@ -9,13 +9,14 @@ import {DropdownModule} from 'primeng/dropdown';
 import {AppRoutingModule,routingComponents} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
     ConfigAppComponent,
     ConfigTopAppComponent,
     MenusComponent,
-    MapBusinessProcessApplicationComponent,routingComponents
+    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent
   ],
   imports: [
     BrowserModule,

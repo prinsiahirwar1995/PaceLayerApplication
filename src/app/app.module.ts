@@ -8,6 +8,7 @@ import { MapBusinessProcessApplicationComponent } from './map-business-process-a
 import {DropdownModule} from 'primeng/dropdown';
 import {AppRoutingModule,routingComponents} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import {Observable} from 'rxjs';
 @NgModule({
   declarations: [
     AppComponent,

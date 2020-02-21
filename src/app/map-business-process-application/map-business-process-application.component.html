@@ -34,9 +34,9 @@ Portfolio / Domain:
         </div>
         <div class="col-sm-6" style="float: left;">
             <div ng-app="mainApp" ng-controller="mainCtrl">
-                <select ng-model="selectedItem" ng-options="" style="width: 130px;">
-                  <option value="" disabled>Select a type</option>
-                </select>
+              <select ng-model="mapData" style="width: 240px;">
+                <option value="m.ID" *ngFor="let m of mapData">{{m.Portfolio}}</option>
+              </select>
                 
               </div>
 </div>
@@ -47,7 +47,7 @@ Application Name:
     </div>
     <div class="col-sm-6" style="float: left;">
         <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select ng-model="selectedItem" ng-options="" style="width: 130px;">
+            <select ng-model="selectedItem" style="width: 240px;">
               <option value="" disabled>Select a type</option>
             </select>
             
@@ -60,8 +60,8 @@ Business Process
 </div>
 <div class="col-sm-6">
     <div ng-app="mainApp" ng-controller="mainCtrl">
-        <select ng-model="selectedItem" ng-options="" style="width: 130px;">
-          <option value="" disabled>Select a type</option>
+        <select ng-model="BPData" style="width: 240px;">
+          <option value="bp.ID" *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
         </select>
         
       </div>
@@ -73,16 +73,13 @@ Business Process
 </div>
 <div class="col-sm-6">
   <div ng-app="mainApp" ng-controller="mainCtrl" >
-    <select ng-model="selectedItem"  ng-model="mapdrp" style="width: 130px;">
-      <option value="m.key" *ngFor="let m of mapBPDrp">{{m.value}}</option>
+    <select ng-model="mapData" style="width: 240px;">
+      <option value="m.ID" *ngFor="let m of mapData">{{m.Portfolio}}</option>
     </select>
-    
-
-  
-  </div>  
+    </div>  
 </div>
-
 </div><br>
+
 <div class="row">
   <div class="col-sm-12">
     <button type="button" class="btn btn-primary" ng-click="add();" ng-class="isLoading ? 'disabled' : '';">Add
@@ -90,7 +87,18 @@ Business Process
    </div>
 </div>
 <!--Table for display data-->
-
+<table>
+  <tr>
+    <th>Business Process</th>
+    <th>Process Description</th>
+    <th>Support Level</th>
+  </tr>
+  <tr *ngFor="let bp of BPData">
+    <td>{{bp.PrcCaption}}</td>
+    <td>{{bp.PrcCaption}}</td>
+    <td></td>
+  </tr>
+</table>
 </div>
 <div style="margin-bottom: 50px;">
 </div>

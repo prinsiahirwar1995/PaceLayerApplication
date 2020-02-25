@@ -27,7 +27,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
 //   this.BPData = results[1];
 // })
 
-    this.httpService.get("https://pacelayerapi.azurewebsites.net/masterapi/Portfolio")
+    this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/portfolio")
       .subscribe(
         portfoliodata => {
           
@@ -36,7 +36,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
       });
 
   //filling Business Process data
-  this.httpService.get("https://pacelayerapi.azurewebsites.net/masterapi/BProcess")
+  this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/BProcess")
   .subscribe(
     bpdata => {
       

@@ -12,11 +12,12 @@ chartdata : any;
 
   ngOnInit() {
 
-    this.httpService.get("http://pacelayerapi.azurewebsites.net/masterapi/ApplLayerState")
+    this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/ApplLayerState")
     .subscribe(
       portfoliodata => {
         
         this.chartdata = portfoliodata[0];//fill data from api to mapdata
+        console.log(this.chartdata);
         
     });
   }

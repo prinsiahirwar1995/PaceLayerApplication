@@ -1,18 +1,262 @@
-<div class="scene mainContainer">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .scene {
+            width: 900px;
+            height: 250px;
+            border: 0px solid #CCC;
+            perspective: 900px;
+        }
+
+        .box {
+            width: 900px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(-50px);
+            transition: transform 1s;
+            margin-top: auto;
+        }
+
+            .box.show-bottom {
+                transform: translateZ(-100px) rotateX( 65deg);
+            }
+
+
+        .box__face {
+            position: absolute;
+            border: 2px solid #CDCDCD;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+
+        .box__face--front,
+        .box__face--back {
+            width: 900px;
+            height: 150px;
+            line-height: 200px;
+        }
+
+        .box__face--right,
+        .box__face--left {
+            width: 40px;
+            height: 150px;
+            left: 130px;
+            line-height: 200px;
+        }
+
+        .box__face--top,
+        .box__face--bottom {
+            width: 900px;
+            height: 40px;
+            top: 50px;
+            line-height: 40px;
+        }
+
+        .category1 {
+            background: #FFF1B7;
+        }
+
+        .category1-caption {
+            background: #FFE164;
+        }
+
+        .category2 {
+            background: #B5DA3E;
+        }
+
+        .category2-caption {
+            background: #CDE678;
+        }
+
+        .category3 {
+            background: #9DC3E6;
+        }
+
+        .category3-caption {
+            background: #BDD7EE;
+        }
+
+        .box__face--front {
+            transform: rotateY( 0deg) translateZ( 22px);
+        }
+
+        .box__face--back {
+            transform: rotateY(180deg) translateZ( 22px);
+        }
+
+        .box__face--right {
+            transform: rotateY( 90deg) translateZ(750px);
+        }
+
+        .box__face--left {
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+
+        .box__face--top {
+            transform: rotateX( 90deg) translateZ(72px);
+        }
+
+        .box__face--bottom {
+            transform: rotateX(-90deg) translateZ(80px);
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        .mainContainer {
+            position: relative;
+        }
+
+        .appContainer {
+            position: absolute;
+            text-align: center;
+            width: 100px;
+            text-wrap: normal;
+            z-index: 1;
+            top: 5px;
+            left: 55px;
+            height: 90px;
+            width: 800px;
+        }
+
+        /* .appItem {
+            font-size: 10px;
+            vertical-align: text-bottom;
+            padding: 10px;
+            border: 1px black solid;
+            width: 50px;
+            float: left;
+            height: 23px;
+            text-wrap: normal;
+            background: #A9D18E;
+            margin-bottom: 1px; */
+            .appItem {
+            font-size: 10px;
+            vertical-align: text-bottom;
+            padding: 10px;
+            border: 1px black solid;
+            width: 150px;
+            float: left;
+            height: 27px;
+            text-wrap: normal;
+            background: #A9D18E;
+            margin-bottom: 1px; 
+        }
+    </style>
+
+</head>
+<body>
+    <div class="scene mainContainer">
+        <div class="appContainer">
+                <div *ngFor="let cv of chartdata ?.reverse()">
+                    <div class="appItem" *ngIf="(cv.caption == 'Systems of Innovation')">{{cv.apptitle}}</div>
+                </div>
+        </div>
+<div style="height: 150px;"></div>
+        <div class="box show-bottom">
+            <div class="box__face box__face--front category1"></div>
+            <div class="box__face box__face--back category1"></div>
+            <div class="box__face box__face--right category1"></div>
+            <div class="box__face box__face--left category1"></div>
+            <div class="box__face box__face--top category1"></div>
+            <div class="box__face box__face--bottom category1-caption">System of Innovation</div>
+        </div>
+    </div>
+<div style="height: 50px;"></div>
+    <div class="scene mainContainer">
+        <div class="appContainer">
+            <div  *ngFor="let cv of chartdata ?.reverse()">
+                <div class="appItem" *ngIf="(cv.caption == 'Systems of Differentiation')">{{cv.apptitle}}</div>
+               
+            </div>
+        </div>
+        <div style="height: 150px;"></div>
+        <div class="box show-bottom">
+            <div class="box__face box__face--front category2"></div>
+            <div class="box__face box__face--back category2"></div>
+            <div class="box__face box__face--right category2"></div>
+            <div class="box__face box__face--left category2"></div>
+            <div class="box__face box__face--top category2"></div>
+            <div class="box__face box__face--bottom category2-caption">System of Differentiation</div>
+        </div>
+    </div>
+
+    <div class="scene mainContainer">
+        <div class="appContainer">
+        <div *ngFor="let cv of chartdata ?.reverse()">
+            <div class="appItem" *ngIf="(cv.caption == 'Systems of Record')">{{cv.apptitle}}</div>  
+        </div>
+    </div>
+    <div style="height: 150px;"></div>
+        <div class="box show-bottom">
+            <div class="box__face box__face--front category3"></div>
+            <div class="box__face box__face--back category3"></div>
+            <div class="box__face box__face--right category3"></div>
+            <div class="box__face box__face--left category3"></div>
+            <div class="box__face box__face--top category3"></div>
+            <div class="box__face box__face--bottom category3-caption">System of Record</div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+<!-- <div class="scene mainContainer">
     <div class="appContainer">
         
-       
-        <div class="appItem"  *ngFor="let c of chartdata">{{c.apptitle}}</div>
-        
-    
-    
-</div>
-    <div class="box show-bottom">
-        <div class="box__face box__face--front category1"></div>
-        <div class="box__face box__face--back category1"></div>
-        <div class="box__face box__face--right category1"></div>
-        <div class="box__face box__face--left category1"></div>
-        <div class="box__face box__face--top category1"></div>
-        <div class="box__face box__face--bottom category1-caption">System of Innovation</div>
+        <div *ngFor="let cv of chartdata">
+            <div class="appItem" *ngIf="(cv.caption == 'Systems of Record')">{{cv.apptitle}}</div>
+           
+        </div>
+        <div class="box show-bottom">
+            <div class="box__face box__face--front category1"></div>
+            <div class="box__face box__face--back category1"></div>
+            <div class="box__face box__face--right category1"></div>
+            <div class="box__face box__face--left category1"></div>
+            <div class="box__face box__face--top category1"></div>
+            <div class="box__face box__face--bottom category1-caption">Systems of Record</div>
+        </div>
     </div>
 </div>
+<div class="scene mainContainer">
+    <div class="appContainer">
+        <div *ngFor="let cv of chartdata">
+            <div class="appItem" *ngIf="(cv.caption == 'Systems of Innovation')">{{cv.apptitle}}</div>
+            
+        </div>
+        <div class="box show-bottom">
+            <div class="box__face box__face--front category1"></div>
+            <div class="box__face box__face--back category1"></div>
+            <div class="box__face box__face--right category1"></div>
+            <div class="box__face box__face--left category1"></div>
+            <div class="box__face box__face--top category1"></div>
+            <div class="box__face box__face--bottom category1-caption">System of Innovation</div>
+        </div>
+</div>
+</div>
+<div class="scene mainContainer">
+    <div class="appContainer">
+        <div  *ngFor="let cv of chartdata">
+            <div class="appItem" *ngIf="(cv.caption == 'Systems of Differentiation')">{{cv.apptitle}}</div>
+           
+        </div>
+        <div class="box show-bottom">
+            <div class="box__face box__face--front category1"></div>
+            <div class="box__face box__face--back category1"></div>
+            <div class="box__face box__face--right category1"></div>
+            <div class="box__face box__face--left category1"></div>
+            <div class="box__face box__face--top category1"></div>
+            <div class="box__face box__face--bottom category1-caption">Systems of Differentiation</div>
+        </div>
+</div>
+</div> -->

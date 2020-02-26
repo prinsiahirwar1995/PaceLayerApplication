@@ -116,39 +116,46 @@ label {
     position: absolute;
     text-align: center;
     width: 100px;
-    text-wrap: normal;
+     /*text-wrap: normal;*/
     z-index: 1;
     /*top: 5px;*/
-    bottom: 200px;
-    left: 55px;
+    bottom: 148px;
+    left: 90px;
     height: 90px;
     width: 800px;
+    display: flex; 
+    flex-flow: wrap-reverse;
+    
 }
 
 .appContainer1 {
     position: absolute;
     text-align: center;
     width: 100px;
-    text-wrap: normal;
+    /*text-wrap: normal;*/
     z-index: 1;
     /* top: 5px; */
-    bottom: 300px;
-    left: 55px;
+    bottom: 148px;
+    left: 90px;
     height: 90px;
     width: 800px;
+    display: flex; 
+    flex-flow: wrap-reverse;
 }
 
 .appContainer2 {
     position: absolute;
     text-align: center;
     width: 100px;
-    text-wrap: normal;
+    /*text-wrap: normal;*/
     z-index: 1;
    /* top: 5px;*/
-   bottom: 390px;
-    left: 55px;
+   bottom: 148px;
+    left: 90px;
     height: 90px;
     width: 800px;
+    display: flex; 
+    flex-flow: wrap-reverse;
 }
 /* .appItem {
     font-size: 10px;
@@ -172,6 +179,5 @@ label {
     text-wrap: normal;
     background: #A9D18E;
     margin-bottom: 1px; 
-    display: flex;
-flex-direction: column-reverse;
+   
 }

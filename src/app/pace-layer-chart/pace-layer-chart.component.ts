@@ -7,7 +7,7 @@ import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/commo
 })
 @Injectable()
 export class PaceLayerChartComponent implements OnInit {
-chartdata : any;
+chartdata : any[];
   constructor (private httpService: HttpClient) { }
 
   ngOnInit() {
@@ -17,7 +17,7 @@ chartdata : any;
       portfoliodata => {
         
         this.chartdata = portfoliodata[1];//fill data from api to mapdata
-        console.log(this.chartdata);
+        console.log(this.chartdata.length-1);
         
     });
   }

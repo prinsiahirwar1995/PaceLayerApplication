@@ -1,10 +1,10 @@
-/* body {
+body {
     font-family: sans-serif;
 }
 
 .scene {
     width: 900px;
-    height: 200px;
+    height: 250px;
     border: 0px solid #CCC;
     perspective: 900px;
 }
@@ -16,6 +16,7 @@
     transform-style: preserve-3d;
     transform: translateZ(-50px);
     transition: transform 1s;
+    margin-top: auto;
 }
 
     .box.show-bottom {
@@ -117,13 +118,39 @@ label {
     width: 100px;
     text-wrap: normal;
     z-index: 1;
-    top: 5px;
+    /*top: 5px;*/
+    bottom: 200px;
     left: 55px;
     height: 90px;
     width: 800px;
 }
 
-.appItem {
+.appContainer1 {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    text-wrap: normal;
+    z-index: 1;
+    /* top: 5px; */
+    bottom: 300px;
+    left: 55px;
+    height: 90px;
+    width: 800px;
+}
+
+.appContainer2 {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    text-wrap: normal;
+    z-index: 1;
+   /* top: 5px;*/
+   bottom: 390px;
+    left: 55px;
+    height: 90px;
+    width: 800px;
+}
+/* .appItem {
     font-size: 10px;
     vertical-align: text-bottom;
     padding: 10px;
@@ -133,5 +160,18 @@ label {
     height: 23px;
     text-wrap: normal;
     background: #A9D18E;
-    margin-bottom: 1px;
-} */
+    margin-bottom: 1px; */
+    .appItem {
+    font-size: 8px;
+    vertical-align: text-bottom;
+    padding: 10px;
+    border: 1px black solid;
+    width: 90px;
+    float: left;
+    height: 46px;
+    text-wrap: normal;
+    background: #A9D18E;
+    margin-bottom: 1px; 
+    display: flex;
+flex-direction: column-reverse;
+}

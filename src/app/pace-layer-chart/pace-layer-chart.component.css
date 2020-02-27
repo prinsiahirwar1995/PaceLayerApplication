@@ -56,6 +56,10 @@ body {
     line-height: 40px;
 }
 
+.boxTitle{
+    text-overflow: ellipsis;white-space: nowrap;
+    width: 100px;       font-size: x-small;  overflow: hidden;
+}
 .category1 {
     background: #FFF1B7;
 }

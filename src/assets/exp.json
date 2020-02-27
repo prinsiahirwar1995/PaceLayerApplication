@@ -1,0 +1,21 @@
+var jimApp = angular.module("mainApp",  []);
+
+jimApp.controller('mainCtrl', function($scope){
+  $scope.Types  = [
+  {
+     "Business Process": "001",
+   "Process Description": "Eurasian Collared-Dove",
+   "Support Level": "Dove"
+},
+{
+    "Business Process": "002",
+    "Process Description": "Bald Eagle",
+    "Support Level": "Hawk"
+},
+{
+    "Business Process": "003",
+    "Process Description": "Cooper's Hawk",
+    "Support Level": "Hawk"
+  }];
+
+9606508285//384

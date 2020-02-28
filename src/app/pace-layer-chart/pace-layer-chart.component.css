@@ -35,27 +35,46 @@ body {
 
 .box__face--front,
 .box__face--back {
-    width: 900px;
+    width: 1200px;
     height: 150px;
     line-height: 200px;
 }
 
-.box__face--right,
+.box__face--right
+{
+    width: 40px;
+    height: 150px;
+    left: 432px;
+    line-height: 200px;
+}
 .box__face--left {
     width: 40px;
     height: 150px;
-    left: 130px;
+    left: 128px;
     line-height: 200px;
 }
 
 .box__face--top,
 .box__face--bottom {
-    width: 900px;
+    width: 1200px;
     height: 40px;
     top: 50px;
     line-height: 40px;
 }
+  /* .boxTitle{
+    
+   
 
+  text-overflow: ellipsis-word;
+    
+    white-space: nowrap;
+    overflow: hidden;
+  word-wrap: break-word;
+   overflow: hidden;
+  
+
+}
+ */
 .category1 {
     background: #FFF1B7;
 }
@@ -115,14 +134,14 @@ label {
 .appContainer {
     position: absolute;
     text-align: center;
-    width: 120px;
-     /*text-wrap: normal;*/
+    width: 80px;
+    text-wrap: normal;
     z-index: 1;
     /*top: 5px;*/
     bottom: 148px;
     left: 55px;
-    height: 90px;
-    width: 800px;
+    height: 40px;
+    width: 1080px;
     display: flex; 
     flex-flow: wrap-reverse;
     
@@ -131,14 +150,14 @@ label {
 .appContainer1 {
     position: absolute;
     text-align: center;
-    width: 120px;
-    /*text-wrap: normal;*/
+    width: 80px;
+    text-wrap: normal;
     z-index: 1;
     /* top: 5px; */
     bottom: 148px;
     left: 55px;
-    height: 90px;
-    width: 800px;
+    height: 40px;
+    width: 1080px;
     display: flex; 
     flex-flow: wrap-reverse;
 }
@@ -146,14 +165,14 @@ label {
 .appContainer2 {
     position: absolute;
     text-align: center;
-    width: 120px;
-    /*text-wrap: normal;*/
+    width: 80px;
+    text-wrap: normal;
     z-index: 1;
    /* top: 5px;*/
    bottom: 148px;
     left: 55px;
-    height: 90px;
-    width: 800px;
+    height: 40px;
+    width: 1080px;
     display: flex; 
     flex-flow: wrap-reverse;
 }
@@ -169,7 +188,7 @@ label {
     background: #A9D18E;
     margin-bottom: 1px; */
     .appItem {
-    font-size: 8px;
+    font-size: 10px;
     vertical-align: text-bottom;
     padding: 10px;
     border: 1px black solid;

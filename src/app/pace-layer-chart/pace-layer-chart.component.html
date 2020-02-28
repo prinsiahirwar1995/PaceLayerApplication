@@ -8,7 +8,10 @@
     <div class="scene mainContainer">
         <div class="appContainer">
                 <div *ngFor="let cv of chartdata;">
-                    <div class="appItem" *ngIf="(cv.caption == 'Systems of Innovation')">{{cv.apptitle}}</div>
+                    <div style="overflow:hidden; white-space: nowrap;" class="appItem" *ngIf="(cv.caption == 'Systems of Innovation')">
+                        <a href="" class="boxTitle" title={{cv.apptitle}}>{{cv.apptitle}}</a>
+                    </div>
+                
                 </div>
         </div>
 
@@ -21,11 +24,13 @@
             <div class="box__face box__face--bottom category1-caption">System of Innovation</div>
         </div>
     </div>
-<div style="height: 50px;"></div>
+<br>>
     <div class="scene mainContainer">
         <div class="appContainer1">
             <div  *ngFor="let cv of chartdata">
-                <div class="appItem" *ngIf="(cv.caption == 'Systems of Differentiation')">{{cv.apptitle}}</div>
+                <div style="overflow:hidden; white-space: nowrap;" class="appItem" *ngIf="(cv.caption == 'Systems of Differentiation')">
+                    <a href="" class="boxTitle" title={{cv.apptitle}}>{{cv.apptitle}}</a>
+                </div>
                
             </div>
         </div>
@@ -39,11 +44,13 @@
             <div class="box__face box__face--bottom category2-caption">System of Differentiation</div>
         </div>
     </div>
-    <div style="height: 150px;"></div>
+    <br>&nbsp;
     <div class="scene mainContainer">
         <div class="appContainer2">
         <div *ngFor="let cv of chartdata">
-            <div class="appItem" *ngIf="(cv.caption == 'Systems of Record')">{{cv.apptitle}}</div>  
+            <div style="overflow:hidden; white-space: nowrap;" class="appItem" *ngIf="(cv.caption == 'Systems of Record')">
+                <a href="" class="boxTitle" title={{cv.apptitle}}>{{cv.apptitle}}</a>
+            </div>  
         </div>
     </div>
     

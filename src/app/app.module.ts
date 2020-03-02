@@ -14,7 +14,6 @@ import { CopyToClipboardComponent } from './copy-to-clipboard/copy-to-clipboard.
 @NgModule({
   declarations: [
     AppComponent,
-    ConfigAppComponent,
     ConfigTopAppComponent,
     MenusComponent,
     MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, CopyToClipboardComponent

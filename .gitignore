@@ -45,3 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 src/config.azcli
+angular.json
+package-lock.json
+package.json

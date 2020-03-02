@@ -73,8 +73,15 @@ body {
    overflow: hidden;
   
 
+<<<<<<< HEAD
 }
  */
+=======
+.boxTitle{
+    text-overflow: ellipsis;white-space: nowrap;
+    width: 100px;       font-size: x-small;  overflow: hidden;
+}
+>>>>>>> a4e485ec137c3ae2e0c1ee55e861197c8e4e9a48
 .category1 {
     background: #FFF1B7;
 }

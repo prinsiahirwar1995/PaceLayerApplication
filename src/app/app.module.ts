@@ -10,14 +10,13 @@ import {AppRoutingModule,routingComponents} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.component';
-import { CopyToClipboardComponent } from './copy-to-clipboard/copy-to-clipboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ConfigTopAppComponent,
     MenusComponent,
-    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, CopyToClipboardComponent
-  ],
+    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent  ],
   imports: [
     BrowserModule,
     HttpClientModule,

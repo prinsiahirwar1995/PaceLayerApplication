@@ -1,6 +1,6 @@
 import { Component, OnInit,Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { CopyToClipboardComponent } from '../copy-to-clipboard/copy-to-clipboard.component';
+
 @Component({
   selector: 'app-pace-layer-chart',
   templateUrl: './pace-layer-chart.component.html',

@@ -48,8 +48,8 @@ Application Name:
     </div>
     <div class="col-sm-6" style="float: left;">
         <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select ng-model="selectedItem" style="width: 240px;">
-              <option value="" disabled>Select a type</option>
+            <select ng-model="ApplicationData" style="width: 240px;">
+              <option value="app.ID" *ngFor="let app of ApplicationData">{{app.apptitle}}</option>
             </select>
             
           </div>
@@ -74,8 +74,8 @@ Business Process
 </div>
 <div class="col-sm-6">
   <div ng-app="mainApp" ng-controller="mainCtrl" >
-    <select ng-model="mapData" style="width: 240px;">
-      <option value="m.ID" *ngFor="let m of mapData">{{m.Portfolio}}</option>
+    <select ng-model="SupportLevel" style="width: 240px;">
+      <option value="sl.ID" *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
     </select>
     </div>  
 </div>

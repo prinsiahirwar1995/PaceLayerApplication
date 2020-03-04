@@ -35,8 +35,8 @@ Portfolio / Domain:
         </div>
         <div class="col-sm-6" style="float: left;">
             <div ng-app="mainApp" ng-controller="mainCtrl">
-              <select ng-model="mapData" style="width: 240px;">
-                <option value="m.ID" *ngFor="let m of mapData">{{m.Portfolio}}</option>
+              <select ng-model ="mapData" style="width: 240px;" (change)="Onchangedropdown($event)">
+                <option  *ngFor="let m of mapData" value={{m.ID}}>{{m.Portfolio}}</option>
               </select>
                 
               </div>

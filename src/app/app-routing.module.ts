@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import {ConfigAppComponent} from './config-app/config-app.component';
 import {MapBusinessProcessApplicationComponent} from './map-business-process-application/map-business-process-application.component';
 import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.component';
+import {TimeplotComponent} from './timeplot/timeplot.component';
 const routes: Routes = [
     { path: 'configapp', component: ConfigAppComponent},
     {path: 'mapbusinessprocessapplication', component: MapBusinessProcessApplicationComponent},
-    {path:'paceLayerchart',component:PaceLayerChartComponent}
+    {path:'paceLayerchart',component:PaceLayerChartComponent},
+    {path:'timeplot',component:TimeplotComponent}
   ];
   @NgModule({
     imports: [RouterModule.forRoot(routes)],
@@ -15,4 +17,4 @@ const routes: Routes = [
   })
 
   export class AppRoutingModule { }
-  export const routingComponents = [ConfigAppComponent,MapBusinessProcessApplicationComponent,PaceLayerChartComponent]
+  export const routingComponents = [ConfigAppComponent,MapBusinessProcessApplicationComponent,PaceLayerChartComponent,TimeplotComponent]

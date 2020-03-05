@@ -8,7 +8,11 @@ import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/commo
 })
 @Injectable()
 export class PaceLayerChartComponent implements OnInit {
+
+  
 chartdata : any[];
+
+
   constructor (private httpService: HttpClient) { }
 a:string;
   ngOnInit() {
@@ -18,10 +22,35 @@ a:string;
       portfoliodata => {
         
         this.chartdata = portfoliodata[1];//fill data from api to mapdata
-        console.log(this.chartdata.length-1);
+        
         
     });
     
+
+    /*function copyClipboard() {
+      var elm = document.getElementById("divClipboard");
+      // for Internet Explorer
+    
+      if(document.body.createTextRange) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(elm);
+        range.select();
+        document.execCommand("Copy");
+        alert("Copied div content to clipboard");
+      }
+      else if(window.getSelection) {
+        // other browsers
+    
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(elm);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("Copy");
+        alert("Copied div content to clipboard");
+      }
+    }*/
+   
   }
 
 }

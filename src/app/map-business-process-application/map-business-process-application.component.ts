@@ -14,10 +14,25 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class MapBusinessProcessApplicationComponent implements OnInit {
   title = 'PaceLayerUI';
-  
+  selectedApplication: number;
   mapData: any;//[];
   BPData: any;//[];
+  ApplicationData: any[];
+ SupportLevel: any[];
+  arrayObj: any;
+  objectData : any;
   constructor (private httpService: HttpClient) { }
+
+  Onchangedropdown(val){
+    //alert(val.target.value);
+   return this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/applications/"+val.target.value)
+    .subscribe(
+      appdata => {
+        this.ApplicationData = appdata[0];
+        console.log(this.ApplicationData);
+        
+    });
+  }
    ngOnInit () {
 //Filling Portfolio data
 // let portdata = this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/portfolios");
@@ -25,13 +40,20 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
 // forkJoin([portdata,bprocess]).subscribe(results => {
 //   this.mapData = results[0];
 //   this.BPData = results[1];
+//getportfolio(): Observable<any>{
+ // let param1 = new HttpParams().set("ID","1");
+ // return this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterApi/applications/",{params:param1})
+//}
 // })
 
-    this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/portfolio")
+
+    this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/portfolios")
       .subscribe(
         portfoliodata => {
-          
+         
           this.mapData = portfoliodata[0];//fill data from api to mapdata
+         console.log(this.mapData);
+         
           
       });
 
@@ -43,7 +65,28 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
       this.BPData = bpdata[0];//fill data from api to mapdata
       
   });
+//
+
+ /*this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterApi/applications/1")
+ .subscribe(
+   application => {
+     
+    //  this.ApplicationData = application[0];//fill data from api to mapdata
+    //  console.log(this.ApplicationData)
+     
+ });*/
+ //filling Support Level data
+ this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterApi/GetSupports")
+ .subscribe(
+  supportlevel => {
+     
+     this.SupportLevel = supportlevel[0];//fill data from api to mapdata
+     console.log(this.SupportLevel)
+     
+ });
+
+ 
+}
 
   }
 
-} 

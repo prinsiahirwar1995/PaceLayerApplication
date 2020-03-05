@@ -24,22 +24,12 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   constructor (private httpService: HttpClient) { }
 
   Onchangedropdown(val){
-    alert(val.target.value);
-    this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/applications/"+val)
+    //alert(val.target.value);
+   return this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/applications/"+val.target.value)
     .subscribe(
       appdata => {
         this.ApplicationData = appdata[0];
-        console.log(val);
-        console.log("sdds");
-      //   this.mapData = portfoliodata[0];//fill data from api to mapdata
-      //  console.log(this.mapData);
-      //   for(let i=0;i<this.mapData.length;i++)
-      //   {
-      //     console.log(this.mapData[i].ID)
-      //     // this.arrayObj = this.mapData[i];
-      //     // console.log(this.arrayObj.ID)
-      
-      //   }
+        console.log(this.ApplicationData);
         
     });
   }
@@ -63,13 +53,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
          
           this.mapData = portfoliodata[0];//fill data from api to mapdata
          console.log(this.mapData);
-          // for(let i=0;i<this.mapData.length;i++)
-          // {
-          //   console.log(this.mapData[i].ID)
-          //   // this.arrayObj = this.mapData[i];
-          //   // console.log(this.arrayObj.ID)
-        
-          // }
+         
           
       });
 

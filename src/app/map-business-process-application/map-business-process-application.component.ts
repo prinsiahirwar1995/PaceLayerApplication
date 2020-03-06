@@ -1,10 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import {DropdownModule} from 'primeng/dropdown';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import {Observable, forkJoin} from 'rxjs';
-import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-map-business-process-application',
@@ -14,39 +14,28 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class MapBusinessProcessApplicationComponent implements OnInit {
   title = 'PaceLayerUI';
+  // oppoSuitsForm: FormGroup
+  //submitted = false;private formBuilder: FormBuilder,
   selectedApplication: number;
   mapData: any;//[];
   BPData: any;//[];
   ApplicationData: any[];
  SupportLevel: any[];
-  arrayObj: any;
-  objectData : any;
-  constructor (private httpService: HttpClient) { }
+
+  constructor ( public fb: FormBuilder,private httpService: HttpClient) { }
 
   Onchangedropdown(val){
-    //alert(val.target.value);
-   return this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/applications/"+val.target.value)
+    //alert(val);
+    
+   return this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/applications/" + val)
     .subscribe(
-      appdata => {
-        this.ApplicationData = appdata[0];
-        console.log(this.ApplicationData);
-        
+      application => {
+       this.ApplicationData = application[0];//fill data from api to mapdata   
     });
   }
+  
    ngOnInit () {
-//Filling Portfolio data
-// let portdata = this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/portfolios");
-// let bprocess = this.httpService.get("");
-// forkJoin([portdata,bprocess]).subscribe(results => {
-//   this.mapData = results[0];
-//   this.BPData = results[1];
-//getportfolio(): Observable<any>{
- // let param1 = new HttpParams().set("ID","1");
- // return this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterApi/applications/",{params:param1})
-//}
-// })
-
-
+   
     this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterapi/portfolios")
       .subscribe(
         portfoliodata => {
@@ -63,18 +52,9 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
     bpdata => {
       
       this.BPData = bpdata[0];//fill data from api to mapdata
-      
+      console.log(this.BPData);
   });
-//
 
- /*this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterApi/applications/1")
- .subscribe(
-   application => {
-     
-    //  this.ApplicationData = application[0];//fill data from api to mapdata
-    //  console.log(this.ApplicationData)
-     
- });*/
  //filling Support Level data
  this.httpService.get("http://pacelayerapplicationapi.azurewebsites.net/masterApi/GetSupports")
  .subscribe(
@@ -84,9 +64,40 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
      console.log(this.SupportLevel)
      
  });
-
- 
 }
+// convenience getter for easy access to form fields
+/*get f() { return this.MapBusinessProcessForm.controls; }
+*/
+posts: any;
+mapbusForm = this.fb.group({
+  PortfolioID: [''],
+  ApplicationID:[''],
+  BPID:[''],
+  SupportLevelID:['']
+})
 
-  }
+onSubmit() {
+    let headers = new HttpHeaders();
+
+headers = new HttpHeaders(
+  {
+    'Content-Type': 'application/json',
+  });
+var data = {"PortfolioID": this.mapbusForm.value.PortfolioID,"ApplicationID": this.mapbusForm.value.ApplicationID
+
+,"BPID":this.mapbusForm.value.BPID, "SupportLevelID":this.mapbusForm.value.SupportLevelID
+};
+ console.log(data);
+console.log(headers)
+
+  return this.httpService.post("http://localhost:3000/masterapi/addport/"
+ ,JSON.stringify({data: data}),{ headers: headers}).subscribe(data => {
+  alert("OK");
+    this.posts = data;
+   // show data in console
+   console.log(data);
+   });
+   
+ }
+}
 

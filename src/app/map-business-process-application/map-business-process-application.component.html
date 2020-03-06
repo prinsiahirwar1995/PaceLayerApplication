@@ -9,7 +9,7 @@
   <app-menus></app-menus>
 <br>
 
-  <form style="width: 1170px;margin-left: 90px; background-color: #fff;border: #31708F solid 1px;margin-top:-39px;">
+  <form  [formGroup]="mapbusForm" (ngSubmit)="onSubmit()" style="width: 1170px;margin-left: 90px; background-color: #fff;border: #31708F solid 1px;margin-top:-39px;">
     
 <div class="container">
     
@@ -35,7 +35,7 @@ Portfolio / Domain:
         </div>
         <div class="col-sm-6" style="float: left;">
             <div ng-app="mainApp" ng-controller="mainCtrl">
-              <select ng-model ="mapData" style="width: 240px;" (change)="Onchangedropdown($event)">
+              <select ng-model ="mapData" formControlName="PortfolioID" style="width: 240px;" (change)="Onchangedropdown($event.target.value)">
                 <option  *ngFor="let m of mapData" value={{m.ID}}>{{m.Portfolio}}</option>
               </select>
                 
@@ -48,8 +48,8 @@ Application Name:
     </div>
     <div class="col-sm-6" style="float: left;">
         <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select ng-model="ApplicationData" style="width: 240px;">
-              <option value="app.ID" *ngFor="let app of ApplicationData">{{app.apptitle}}</option>
+            <select ng-model="ApplicationData" formControlName="ApplicationID" style="width: 240px;">
+              <option value={{app.ID}} *ngFor="let app of ApplicationData">{{app.appTitle}}</option>
             </select>
             
           </div>
@@ -61,8 +61,8 @@ Business Process
 </div>
 <div class="col-sm-6">
     <div ng-app="mainApp" ng-controller="mainCtrl">
-        <select ng-model="BPData" style="width: 240px;">
-          <option value="bp.ID" *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
+        <select ng-model="BPData" style="width: 240px;" formControlName="BPID">
+          <option value={{bp.ID}} *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
         </select>
         
       </div>
@@ -74,8 +74,8 @@ Business Process
 </div>
 <div class="col-sm-6">
   <div ng-app="mainApp" ng-controller="mainCtrl" >
-    <select ng-model="SupportLevel" style="width: 240px;">
-      <option value="sl.ID" *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
+    <select ng-model="SupportLevel" style="width: 240px;" formControlName="SupportLevelID">
+      <option value={{sl.ID}} *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
     </select>
     </div>  
 </div>
@@ -83,7 +83,7 @@ Business Process
 
 <div class="row">
   <div class="col-sm-12">
-    <button type="button" class="btn btn-primary" ng-click="add();" ng-class="isLoading ? 'disabled' : '';">Add
+    <button type="submit" class="btn btn-primary" ng-class="isLoading ? 'disabled' : '';">Add
     </button>
    </div>
 </div>
@@ -94,9 +94,9 @@ Business Process
     <th>Process Description</th>
     <th>Support Level</th>
   </tr>
-  <tr *ngFor="let bp of BPData">
-    <td>{{bp.PrcCaption}}</td>
-    <td>{{bp.PrcCaption}}</td>
+  <tr *ngFor="let posdata of posts">
+    <td>{{posdata.PrcCaption}}</td>
+    <td>{{posdata.PrcCaption}}</td>
     <td></td>
   </tr>
 </table>

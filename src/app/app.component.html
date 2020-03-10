@@ -3,15 +3,18 @@
       Pace Layering Application
     </h1>
   </div>
+  
   <div>
+    
   <nav>
-    <a routerLink="/configapp" routerLinkActive="active">Main UI</a>
+    <a routerLink="/configapp" routerLinkActive="active">UI</a>
     &nbsp;
   <a routerLink="/mapbusinessprocessapplication" routerLinkActive="active">MapBusinessProcess</a>
   &nbsp;
   <a routerLink="/paceLayerchart" routerLinkActive="active">PaceLayer</a>
   &nbsp;
   <a routerLink="/timeplot" routerLinkActive="active">TimePlot</a>
-  </nav>&nbsp;&nbsp;&nbsp;&nbsp;
+  </nav>
+  <div *ngIf="showLoadingIndicator" class="spinner">Loading....</div>
   <router-outlet></router-outlet>
   &nbsp;&nbsp;&nbsp;&nbsp;</div>

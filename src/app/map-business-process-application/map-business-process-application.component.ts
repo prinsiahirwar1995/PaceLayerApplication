@@ -83,16 +83,17 @@ headers = new HttpHeaders(
   {
     'Content-Type': 'application/json',
   });
-var data = {"PortfolioID": this.mapbusForm.value.PortfolioID,"ApplicationID": this.mapbusForm.value.ApplicationID
+  
+var data = {"portfolioID": this.mapbusForm.value.PortfolioID,"applicationID": this.mapbusForm.value.ApplicationID
 
-,"BPID":this.mapbusForm.value.BPID, "SupportLevelID":this.mapbusForm.value.SupportLevelID
+,"BprocessID":this.mapbusForm.value.BPID, "SupportOptionID":this.mapbusForm.value.SupportLevelID
 };
  console.log(data);
 console.log(headers)
 
   return this.httpService.post("http://localhost:3000/masterapi/addport/"
- ,JSON.stringify({data: data}),{ headers: headers}).subscribe(data => {
-  alert("OK");
+ ,{params: data},{ headers: headers}).subscribe(data => {
+  //alert("OK");
     this.posts = data;
    // show data in console
    console.log(data);

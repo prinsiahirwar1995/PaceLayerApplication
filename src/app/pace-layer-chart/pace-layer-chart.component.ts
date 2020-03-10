@@ -1,5 +1,7 @@
-import { Component, OnInit,Injectable } from '@angular/core';
+import { Component, OnInit,Injectable, ElementRef,ViewChild } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-pace-layer-chart',
@@ -7,14 +9,27 @@ import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/commo
   styleUrls: ['./pace-layer-chart.component.css']
 })
 @Injectable()
+
 export class PaceLayerChartComponent implements OnInit {
 
   
+  @ViewChild('screen') screen: ElementRef;
+  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('downloadLink') downloadLink: ElementRef;
+  downloadImage(){
+    html2canvas(this.screen.nativeElement).then(canvas => {
+      this.canvas.nativeElement.src = canvas.toDataURL();
+      this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+      this.downloadLink.nativeElement.download = 'PaceLayer-diagram.png';
+      this.downloadLink.nativeElement.click();
+  
+    });
+  }
 chartdata : any[];
 
 
   constructor (private httpService: HttpClient) { }
-a:string;
+  
   ngOnInit() {
 
     this.httpService.get("https://pacelayerapplicationapi.azurewebsites.net/masterapi/ApplLayerState")
@@ -26,30 +41,6 @@ a:string;
         
     });
     
-
-    /*function copyClipboard() {
-      var elm = document.getElementById("divClipboard");
-      // for Internet Explorer
-    
-      if(document.body.createTextRange) {
-        var range = document.body.createTextRange();
-        range.moveToElementText(elm);
-        range.select();
-        document.execCommand("Copy");
-        alert("Copied div content to clipboard");
-      }
-      else if(window.getSelection) {
-        // other browsers
-    
-        var selection = window.getSelection();
-        var range = document.createRange();
-        range.selectNodeContents(elm);
-        selection.removeAllRanges();
-        selection.addRange(range);
-        document.execCommand("Copy");
-        alert("Copied div content to clipboard");
-      }
-    }*/
    
   }
 

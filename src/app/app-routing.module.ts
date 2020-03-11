@@ -4,6 +4,7 @@ import {ConfigAppComponent} from './config-app/config-app.component';
 import {MapBusinessProcessApplicationComponent} from './map-business-process-application/map-business-process-application.component';
 import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.component';
 import {TimeplotComponent} from './timeplot/timeplot.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 const routes: Routes = [
     { path: 'configapp', component: ConfigAppComponent},
     {path: 'mapbusinessprocessapplication', component: MapBusinessProcessApplicationComponent},
@@ -11,7 +12,8 @@ const routes: Routes = [
     {path:'timeplot',component:TimeplotComponent}
   ];
   @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes), NgxSpinnerModule],
+    
     exports: [RouterModule]
 
   })

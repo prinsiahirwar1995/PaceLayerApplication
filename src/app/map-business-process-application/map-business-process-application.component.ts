@@ -21,7 +21,8 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
  SupportLevel: any[];
 sPath:string  ;
   constructor ( public fb: FormBuilder,private httpService: HttpClient) { 
-    this.sPath="http://localhost:3000/masterApi/";
+    this.sPath="http://pacelayerapi.azurewebsites.net/masterApi/";
+    //this.sPath="http://localhost:3000/masterApi/";
   }
 
   Onchangedropdown(val){
@@ -34,15 +35,19 @@ sPath:string  ;
   
    ngOnInit () {
    
-    this.httpService.get(this.sPath+"portfolios").subscribe(portfoliodata => {
+    this.httpService
+      .get(this.sPath+"portfolios").subscribe(portfoliodata => {
       this.httpService.get(this.sPath+"BProcess").subscribe(bpdata => {
         this.httpService.get(this.sPath+"GetSupports").subscribe(supportlevel => {
           this.mapData = portfoliodata[0];//fill data from api to mapdata
           this.BPData = bpdata[0];//fill data from api to mapdata
           this.SupportLevel = supportlevel[0];//fill data from api to mapdata
-      });
-   });
- });
+      },
+      error => console.log('oops', error));
+   },
+   error => console.log('oops', error));
+ },
+ error => console.log('oops', error));
 }
 // convenience getter for easy access to form fields
 /*get f() { return this.MapBusinessProcessForm.controls; }
@@ -66,14 +71,15 @@ var data = {//"portfolioID":"99","applicationID":"99","BprocessID":"99","Support
   "PortfolioID": this.mapbusForm.value.PortfolioID,"ApplicationID": this.mapbusForm.value.ApplicationID
  ,"BprocessID":this.mapbusForm.value.BPID, "SupportOptionID":this.mapbusForm.value.SupportLevelID};
  
-  return this.httpService.post("http://localhost:3000/masterapi/addport/"
+  return this.httpService.post(this.sPath+"/addport/"
  ,data//,JSON.stringify({params: data})
  ,{ headers: headers}).subscribe(data => {
-  alert("OK");
-    //this.posts = data;
-   // show data in console
-   console.log(data);
+  alert("OK"); 
+   this.httpService.get(this.sPath+"getApplBProcess/get/1").subscribe(Records => {
+    this.posts = Records[0];//fill data from api to mapdata
+  console.log(Records);
    });
+  });
    
  }
 }

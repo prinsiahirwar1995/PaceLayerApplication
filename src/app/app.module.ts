@@ -12,7 +12,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import {Observable} from 'rxjs';
 import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.component';
 import { TimeplotComponent } from './timeplot/timeplot.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     AppRoutingModule,
     HighchartsChartModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
     //CommonModule
   ],
   providers: [],

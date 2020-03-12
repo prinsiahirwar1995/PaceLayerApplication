@@ -1,15 +1,11 @@
-.spinner{
-    border: 16px solid yellow;
-    border-top: 16px solid #337AB7;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    animation: spin 700ms linear infinite;
-    top: 50%;
-    left: 50%;
-    position: absolute;
+.navbar-nav li:hover > ul.dropdown-menu {
+    display: block;
 }
-@keyframes spinner{
-    0%{transform: rotate(0deg)}
-    100%{transform: rotate(-360 deg)}
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top:-6px;
 }

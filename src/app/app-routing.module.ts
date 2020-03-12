@@ -6,7 +6,7 @@ import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.com
 import {TimeplotComponent} from './timeplot/timeplot.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 const routes: Routes = [
-    { path: 'configapp', component: ConfigAppComponent},
+    { path: 'InventoryApplications', component: ConfigAppComponent},
     {path: 'mapbusinessprocessapplication', component: MapBusinessProcessApplicationComponent},
     {path:'paceLayerchart',component:PaceLayerChartComponent},
     {path:'timeplot',component:TimeplotComponent}

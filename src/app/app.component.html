@@ -6,15 +6,78 @@
   
   <div>
     
-  <nav>
-    <a routerLink="/configapp" routerLinkActive="active">UI</a>
-    &nbsp;
-  <a routerLink="/mapbusinessprocessapplication" routerLinkActive="active">MapBusinessProcess</a>
-  &nbsp;
-  <a routerLink="/paceLayerchart" routerLinkActive="active">PaceLayer</a>
-  &nbsp;
-  <a routerLink="/timeplot" routerLinkActive="active">TimePlot</a>
-  </nav>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid" style="background-color: #0f4068;">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="color: white;" href="#">PaceLayer</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Diagnose
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Current State Digital maturity assessment</a></li>
+              <li><a href="#">Level of Readiness</a></li>
+              <li><a href="#">Customer Experience Map</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Define
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Create Client Digital Strategy</a></li>
+              <li><a href="#">Define Scope(Portfolio/Domain)</a></li>
+              <li><a href="#">Define Roles & Responsibilities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Determine
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Document Client Goal's & KPI's</a></li>
+              <li><a href="#">Identify Business Capabilities and Processes</a></li>
+              <li> <a routerLink="/InventoryApplications" routerLinkActive="active">Inventory Applications</a></li>
+              <li><a routerLink="/mapbusinessprocessapplication" routerLinkActive="active">MapBusinessProcess</a></li>
+              <li><a href="#">Map Applications and Business Process</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Decide </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                
+                <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="http://google.com">PaceLayer</a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/paceLayerchart" routerLinkActive="active">Application</a></li>
+                        
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Business Capabilities</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Current State</a></li>
+                                <li><a class="dropdown-item" href="#">Desired State</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Business Processes</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Current State</a></li>
+                                <li><a class="dropdown-item" href="#">Desired State</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Create Pace Layer Charts</a></li>
+                        <li><a href="#">Time Assessment of Applications</a></li>
+                        <li><a routerLink="/timeplot" routerLinkActive="active">TimePlot</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+          
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Deliver
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Identify Improvement Opportunities for Digital</a></li>
+              <li><a href="#">Define Digital Roadmap Work Initiatives</a></li>
+              <li><a href="#">Digital Strategy Roadmap</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
   
   <router-outlet></router-outlet>
   &nbsp;&nbsp;&nbsp;&nbsp;</div>

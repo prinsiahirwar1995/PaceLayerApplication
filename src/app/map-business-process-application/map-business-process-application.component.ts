@@ -39,6 +39,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   ApplicationData: any[];
 
  SupportLevel: any[];
+ Dataforgrid: any[];
 
 sPath:string  ;
 
@@ -57,12 +58,19 @@ sPath:string  ;
     
 
    return this.httpService.get(this.sPath+"applications/" + val).subscribe(application => {
+     this.httpService.get("http://pacelayerapi.azurewebsites.net/masterApi/getApplBProcess/all/" + val)
+     .subscribe(dg => {
 
-       this.ApplicationData = application[0];//fill data from api to mapdata   
+      this.ApplicationData = application[0];//fill data from api to mapdata   
+      
+       this.Dataforgrid = dg[1];
 
     });
 
+  });
+
   }
+  
 
   
 
@@ -75,18 +83,23 @@ sPath:string  ;
       this.httpService.get(this.sPath+"BProcess").subscribe(bpdata => {
 
         this.httpService.get(this.sPath+"GetSupports").subscribe(supportlevel => {
-
+          
           this.mapData = portfoliodata[0];//fill data from api to mapdata
 
           this.BPData = bpdata[0];//fill data from api to mapdata
 
           this.SupportLevel = supportlevel[0];//fill data from api to mapdata
+          
+          
 
       });
 
    });
 
  });
+ 
+ 
+
 
 }
 
@@ -96,6 +109,8 @@ sPath:string  ;
 
 */
 
+
+//
 posts: any;
 
 mapbusForm = this.fb.group({

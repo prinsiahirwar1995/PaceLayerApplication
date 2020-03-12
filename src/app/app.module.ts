@@ -14,12 +14,13 @@ import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.com
 import { TimeplotComponent } from './timeplot/timeplot.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AreaComponent } from './area/area.component';
 @NgModule({
   declarations: [
     AppComponent,
     ConfigTopAppComponent,
     MenusComponent,
-    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, TimeplotComponent  ],
+    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, TimeplotComponent, AreaComponent  ],
   imports: [
     BrowserModule,
     DropdownModule,// dropdown support

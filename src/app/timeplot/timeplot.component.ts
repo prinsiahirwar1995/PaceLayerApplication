@@ -1,9 +1,11 @@
+
+import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_exporting from 'highcharts/modules/exporting';
 declare var require: any;
 require('highcharts/highcharts-more')(Highcharts);
-
+import {DashboardService} from '../dashboard.service'
 @Component({
   selector: 'app-timeplot',
   templateUrl: './timeplot.component.html',
@@ -11,11 +13,26 @@ require('highcharts/highcharts-more')(Highcharts);
 })
 export class TimeplotComponent implements OnInit {
   Highcharts = Highcharts;
-  chartOptions = {};
-  constructor() { }
+  chartOptions = {};  
+chartdata : any[];
+// constructor (private httpService: HttpClient) { }
 
-  ngOnInit(): void {
-    this.chartOptions = {
+bigChart = []; 
+  
+constructor(private dashboardService: DashboardService) { }
+
+ngOnInit() {
+  this.bigChart = this.dashboardService.bigChart(); 
+//}
+//   ngOnInit(): void {
+
+   // this.httpService.get("http://localhost:3000/masterapi/getTimePlot/all/0")
+   // .subscribe(
+   //   portfoliodata => {       
+   //     this.chartdata = portfoliodata[0];//fill data from api to mapdata
+   //     //console.log(this.chartdata);       
+   // });
+       this.chartOptions = {
       chart: {
          //animation: true,
          //height: 400,

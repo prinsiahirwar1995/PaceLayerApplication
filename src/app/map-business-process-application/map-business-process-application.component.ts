@@ -45,7 +45,7 @@ sPath:string  ;
 
   constructor ( public fb: FormBuilder,private httpService: HttpClient) { 
 
-    this.sPath="http://localhost:3000/masterApi/";
+    this.sPath="http://pacelayerapi.azurewebsites.net/masterApi/";
 
   }
 
@@ -58,7 +58,8 @@ sPath:string  ;
     
 
    return this.httpService.get(this.sPath+"applications/" + val).subscribe(application => {
-     this.httpService.get("http://pacelayerapi.azurewebsites.net/masterApi/getApplBProcess/all/" + val)
+
+     this.httpService.get(this.sPath+"getApplBProcess/all/" + val)
      .subscribe(dg => {
 
       this.ApplicationData = application[0];//fill data from api to mapdata   

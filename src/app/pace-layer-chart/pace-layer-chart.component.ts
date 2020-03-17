@@ -17,7 +17,7 @@ export class PaceLayerChartComponent implements OnInit {
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('downloadLink') downloadLink: ElementRef;
   downloadImage(){
-    html2canvas(this.screen.nativeElement).then(canvas => {
+    html2canvas(document.body).then(canvas => {
       this.canvas.nativeElement.src = canvas.toDataURL();
       this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
       this.downloadLink.nativeElement.download = 'PaceLayer-diagram.png';
@@ -32,7 +32,7 @@ chartdata : any[];
   
   ngOnInit() {
 
-    this.httpService.get("https://pacelayerapplicationapi.azurewebsites.net/masterapi/ApplLayerState")
+    this.httpService.get("http://pacelayerapi.azurewebsites.net/masterApi/ApplLayerState")
     .subscribe(
       portfoliodata => {
         

@@ -1,109 +1,147 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 
 </head>
+
 <body>
-  
+
   <div></div>
-<br>
+  <br>
 
-  <form  [formGroup]="mapbusForm" (ngSubmit)="onSubmit()" style="width: 1170px;margin-left: 90px; background-color: #fff;border: #31708F solid 1px;margin-top:-39px;">
-    
-<div class="container">
-    
-  <div class="row" style="background-color: #31708F;
+  <form [formGroup]="mapbusForm" (ngSubmit)="onSubmit()"
+    style="width: 1170px;margin-left: 90px; background-color: #fff;border: #31708F solid 1px;margin-top:-39px;">
+
+    <div class="container" style="width: 1170px;">
+
+      <div class="row" style="background-color: #31708F;
    color:#fff !important;  height: 40px;">
-      <div class="col-sm-4" style="margin-top: 8px;font-family: tahoma, verdana, arial; font-weight: bold;">
-Map Business Processes Supported by Application
+        <div class="col-xs-4 div" style="margin-top: 8px;color: white;">
+          Map Business Processes Supported by Application
 
-</div>
-<div class="col-sm-4" style="margin-top: 3px;">
-  <input type="button" class="textbox"  value="Reset Data"/>&nbsp;
-  <input type="button" class="textbox"  value="Save Data"/>
-  </div>
-  <div class="col-sm-4" style="margin-top: 8px;font-family: tahoma, verdana, arial;font-weight: bold;">
-      Last Action: <label style="width: 60px;"></label>
-      
-      </div>
-</div>
-<br>
-    <div class="row">
-        <div class="col-sm-4" style="float: left;"> 
-Portfolio / Domain:
         </div>
-        <div class="col-sm-6" style="float: left;">
-            <div ng-app="mainApp" ng-controller="mainCtrl">
-              <select ng-model ="mapData" formControlName="PortfolioID" style="width: 240px;" (change)="Onchangedropdown($event.target.value)">
-                <option  *ngFor="let m of mapData" value={{m.ID}}>{{m.Portfolio}}</option>
-              </select>
-                
-              </div>
-</div>
-</div>&nbsp;
-<div class="row">
-    <div class="col-sm-4" style="float: left;">
-Application Name:
-    </div>
-    <div class="col-sm-6" style="float: left;">
-        <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select ng-model="ApplicationData" formControlName="ApplicationID" style="width: 240px;">
+        <div class="col-xs-4 div" style="margin-top: 3px;">
+
+        </div>
+        <div class="col-xs-4 div" style="margin-top: 8px;color: white;">
+          Last Action: <label style="width: 60px;" #lblMessage></label>
+
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6 text-center ">
+         <strong> Portfolio / Domain:</strong>
+        </div>
+        <div class="col-sm-6">
+          <div ng-app="mainApp" ng-controller="mainCtrl">
+            <select required class="btn btn-default textbackgroundcolor" ng-model="mapData" formControlName="PortfolioID"
+              style="width: 280px;" (change)="Onchangedropdown($event.target.value)">
+              <option *ngFor="let m of mapData" value={{m.ID}}>{{m.Portfolio}}</option>
+            </select>
+          </div>
+        </div>
+      </div>&nbsp;
+      <div class="row">
+        <div class="col-sm-6 text-center">
+          <strong> Application Name:</strong>
+        </div>
+        <div class="col-sm-6">
+          <div ng-app="mainApp" ng-controller="mainCtrl">
+            <select required class="btn btn-default textbackgroundcolor" ng-model="ApplicationData" formControlName="ApplicationID"
+              style="width: 280px;">
               <option value={{app.ID}} *ngFor="let app of ApplicationData">{{app.appTitle}}</option>
             </select>
-            
-          </div>
-</div>
-</div>&nbsp;
-<div class="row">
-<div class="col-sm-4">
-Business Process
-</div>
-<div class="col-sm-6">
-    <div ng-app="mainApp" ng-controller="mainCtrl">
-        <select ng-model="BPData" style="width: 240px;" formControlName="BPID">
-          <option value={{bp.ID}} *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
-        </select>
-        
-      </div>
-</div>
-</div>&nbsp;
-<div class="row">
- <div class="col-sm-4">
-  Support Level
-</div>
-<div class="col-sm-6">
-  <div ng-app="mainApp" ng-controller="mainCtrl" >
-    <select ng-model="SupportLevel" style="width: 240px;" formControlName="SupportLevelID">
-      <option value={{sl.ID}} *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
-    </select>
-    </div>  
-</div>
-</div><br>
 
-<div class="row">
-  <div class="col-sm-12">
-    <button type="submit" class="btn btn-primary" ng-class="isLoading ? 'disabled' : '';">Add
-    </button>
-   </div>
-</div>
-<!--Table for display data-->
-<table>
-  <tr>
-    <th>Business Process</th>
-    <th>Process Description</th>
-    <th>Support Level</th>
-  </tr>
-  <tr *ngFor="let dg of Dataforgrid">
-    <td>{{dg.PrcCaption}}</td>
-    <td>{{dg.PrcCaption}}</td>
-    <td></td>
-  </tr>
-</table>
-</div>
-<div style="margin-bottom: 50px;">
-</div>
-</form>
+          </div>
+        </div>
+      </div>&nbsp;
+      <div class="row">
+        <div class="col-sm-6 text-center">
+          <strong>Business Process:</strong>
+        </div>
+        <div class="col-sm-6">
+          <div ng-app="mainApp" ng-controller="mainCtrl">
+            <select required class="btn btn-default textbackgroundcolor" ng-model="BPData" style="width: 280px;" formControlName="BPID">
+              <option value={{bp.ID}} *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
+            </select>
+
+          </div>
+        </div>
+      </div>&nbsp;
+      <div class="row">
+        <div class="col-sm-6 text-center">
+         <strong> Support Level:</strong>
+        </div>
+        <div class="col-sm-4">
+          <div ng-app="mainApp" ng-controller="mainCtrl">
+            <select required class="btn btn-default textbackgroundcolor" ng-model="SupportLevel" style="width: 280px;"
+              formControlName="SupportLevelID">
+              <option value={{sl.ID}} *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary" style="width: 120px;background-color: #31708F">
+           <strong>Add Process!</strong> 
+          </button>
+        </div>
+      </div>
+<hr>
+      <div class="row">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">
+          
+        </div>
+      </div>
+      <!--Table for display data-->
+      <table #tableforddl class="table table-striped" style="display:none;">
+        <thead class="div">
+          <tr>
+
+            <th>Business Process</th>
+            <th>Process Description</th>
+            <th>Support Level</th>
+          </tr>
+        </thead>
+        <tbody class="div">
+          <tr *ngFor="let dg of Tabledata" >
+
+            <td style="width: 250px;">{{dg.AppTitle}}</td>
+            <td style="width: 250px;">{{dg.PrcCaption}}</td>
+            <td style="width: 250px;">{{dg.Support}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+      <table #tablewithoutddl class="table table-striped">
+        <thead class="div">
+          <tr>
+            <th>Portfolio</th>
+            <th>Business Process</th>
+            <th>Process Description</th>
+            <th>Support Level</th>
+          </tr>
+        </thead>
+        <tbody class="div">
+          <tr *ngFor="let dg of Tabledata" >
+            <td style="width: 250px;">{{dg.Portfolio}}</td>
+            <td style="width: 250px;">{{dg.AppTitle}}</td>
+            <td style="width: 250px;">{{dg.PrcCaption}}</td>
+            <td style="width: 250px;">{{dg.Support}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      
+    </div>
+    <div style="margin-bottom: 50px;">
+    </div>
+  </form>
 
 </body>
+
 </html>

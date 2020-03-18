@@ -9,11 +9,13 @@ import { MenusComponent } from './menus/menus.component';
 import { MapBusinessProcessApplicationComponent } from './map-business-process-application/map-business-process-application.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { DashboardService } from './dashboard.service';
 import {Observable} from 'rxjs';
 import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.component';
 import { TimeplotComponent } from './timeplot/timeplot.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -25,14 +27,16 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     DropdownModule,// dropdown support
-    HttpClientModule,
+    HttpClientModule,HttpModule,
     AppRoutingModule,
     HighchartsChartModule,
     ReactiveFormsModule,
     FormsModule
     //CommonModule
   ],
-  providers: [],
+  providers: [
+    DashboardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -13,13 +13,14 @@ body {
     width: 900px;
     height: 200px;
     position: relative;
-    transform-style: preserve-3d;
+    transform-style:preserve-3d;
     transform: translateZ(-50px);
     transition: transform 1s;
     margin-top: auto;
 }
 
     .box.show-bottom {
+        
         transform: translateZ(-100px) rotateX( 65deg);
     }
 

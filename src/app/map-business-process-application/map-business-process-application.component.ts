@@ -26,7 +26,7 @@ import { viewClassName } from '@angular/compiler';
 export class MapBusinessProcessApplicationComponent implements OnInit {
 
   title = 'PaceLayerUI';
-
+  
   // oppoSuitsForm: FormGroup
 
   //submitted = false;private formBuilder: FormBuilder,
@@ -34,7 +34,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   selectedApplication: number;
 
   mapData: any;//[];
-
+  
   BPData: any;//[];
 
   ApplicationData: any[];
@@ -45,10 +45,11 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
 
   Tabledata: any[];
   sPath: string;
-
+  
   constructor(public fb: FormBuilder, private httpService: HttpClient) {
 
     this.sPath = "http://pacelayerapi.azurewebsites.net/masterApi/";
+    
 
   }
 
@@ -56,29 +57,34 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   @ViewChild('tablewithoutddl') tablewithoutddl: ElementRef;
   @ViewChild('lblMessage') lblMessage: ElementRef;
   Onchangedropdown(val) {
-
+    
+    
     //alert(val);
     return this.httpService.get(this.sPath + "applications/" + val).subscribe(application => {
 
       this.httpService.get(this.sPath + "getApplBProcess/get/" + val)
         .subscribe(dg => {
-
+         
           this.ApplicationData = application[0];//fill data from api to mapdata   
 
           this.Tabledata = dg[1];
 
           this.tableforddl.nativeElement.style.display = 'table';
           this.tablewithoutddl.nativeElement.style.visibility = 'hidden';
+          console.log(this.ApplicationData[0])
+          console.log(dg[1].ApplicationID)
         });
 
     });
-
+    
 
 
   }
 
   ngOnInit() {
 
+    
+    
     this.httpService.get(this.sPath + "portfolios").subscribe(portfoliodata => {
 
       this.httpService.get(this.sPath + "BProcess").subscribe(bpdata => {
@@ -93,7 +99,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
             this.SupportLevel = supportlevel[0];//fill data from api to mapdata
 
             this.Tabledata = tabledata[1];
-
+             
           });
 
         });
@@ -101,6 +107,8 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
       });
 
     });
+    
+    
   }
 
   // convenience getter for easy access to form fields

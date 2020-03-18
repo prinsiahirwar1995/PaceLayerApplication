@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <script src= "https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"> 
+        </script> 
 </head>
 <body>
 
@@ -25,7 +26,9 @@
 
         <div class="box show-bottom">
             <div class="box__face box__face--front category1"></div>
-            <div class="box__face box__face--back category1">System of Innovation</div>
+            <div class="box__face box__face--back category1" >
+                <strong style="transform: rotateY(-180deg) translateZ( 22px);">System of Innovation</strong>
+            </div>
             <div class="box__face box__face--right category1"></div>
             <div class="box__face box__face--left category1"></div>
             <div class="box__face box__face--top category1"></div>
@@ -33,7 +36,7 @@
         </div>
         
     </div>
-<br>>
+
     <div class="scene mainContainer">
         <div class="appContainer1">
             <div  *ngFor="let cv of chartdata">
@@ -46,7 +49,9 @@
         
         <div class="box show-bottom">
             <div class="box__face box__face--front category2"></div>
-            <div class="box__face box__face--back category2">System of Differentiation</div>
+            <div class="box__face box__face--back category2">
+                <strong style="transform: rotateY(-180deg) translateZ( 22px);">System of Differentiation</strong>
+            </div>
             <div class="box__face box__face--right category2"></div>
             <div class="box__face box__face--left category2"></div>
             <div class="box__face box__face--top category2"></div>
@@ -63,9 +68,11 @@
         </div>
     </div>
     
-        <div class="box show-bottom">
+        <div class="box show-bottom" #takingfordata>
             <div class="box__face box__face--front category3"></div>
-            <div class="box__face box__face--back category3">System of Record</div>
+            <div class="box__face box__face--back category3">
+                <strong style="transform: rotateY(-180deg) translateZ( 22px);">System of Record</strong>
+            </div>
             <div class="box__face box__face--right category3"></div>
             <div class="box__face box__face--left category3"></div>
             <div class="box__face box__face--top category3"></div>
@@ -74,7 +81,7 @@
     </div>
 </table>
 <div id="download" style="visibility: hidden;">
-    <img #canvas style="width:1150px">
+    <img #canvas>
     <a #downloadLink  style="width:1150px"></a>
   </div>
 </body>

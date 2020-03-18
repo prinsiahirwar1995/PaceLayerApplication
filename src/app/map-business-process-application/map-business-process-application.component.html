@@ -25,61 +25,65 @@
         <div class="col-xs-4 div" style="margin-top: 3px;">
 
         </div>
-        <div class="col-xs-4 div" style="margin-top: 8px;color: white;">
+        <div class="col-xs-4 div" style="margin-top: 8px;color: white;display: none;">
           Last Action: <label style="width: 60px;" #lblMessage></label>
 
         </div>
       </div>
       <br>
       <div class="row">
-        <div class="col-sm-6 text-center ">
+        <div class="col-sm-4 text-center ">
          <strong> Portfolio / Domain:</strong>
         </div>
         <div class="col-sm-6">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor" ng-model="mapData" formControlName="PortfolioID"
-              style="width: 280px;" (change)="Onchangedropdown($event.target.value)">
-              <option *ngFor="let m of mapData" value={{m.ID}}>{{m.Portfolio}}</option>
+            <select required class="btn btn-default textbackgroundcolor" ng-model="defaultdata" formControlName="PortfolioID"
+              style="width: 465px;" (change)="Onchangedropdown($event.target.value)">
+              
+              <option *ngFor="let m of mapData" [selected]="true"   value={{m.ID}} >{{m.Portfolio}}</option>
             </select>
           </div>
         </div>
       </div>&nbsp;
       <div class="row">
-        <div class="col-sm-6 text-center">
+        <div class="col-sm-4 text-center">
           <strong> Application Name:</strong>
         </div>
         <div class="col-sm-6">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor" ng-model="ApplicationData" formControlName="ApplicationID"
-              style="width: 280px;">
-              <option value={{app.ID}} *ngFor="let app of ApplicationData">{{app.appTitle}}</option>
+            <select required class="btn btn-default textbackgroundcolor"  ng-model="ApplicationData" formControlName="ApplicationID"
+              style="width: 465px;">
+              
+              <option value={{app.ID}} [selected]="true"  *ngFor="let app of ApplicationData">{{app.appTitle}}</option>
             </select>
 
           </div>
         </div>
       </div>&nbsp;
       <div class="row">
-        <div class="col-sm-6 text-center">
+        <div class="col-sm-4 text-center">
           <strong>Business Process:</strong>
         </div>
         <div class="col-sm-6">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor" ng-model="BPData" style="width: 280px;" formControlName="BPID">
-              <option value={{bp.ID}} *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
+            <select required class="btn btn-default textbackgroundcolor" ng-model="BPData" style="width: 465px;" formControlName="BPID">
+              
+              <option value={{bp.ID}} [selected]="true"   *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
             </select>
 
           </div>
         </div>
       </div>&nbsp;
       <div class="row">
-        <div class="col-sm-6 text-center">
+        <div class="col-sm-4 text-center">
          <strong> Support Level:</strong>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor" ng-model="SupportLevel" style="width: 280px;"
+            <select required class="btn btn-default textbackgroundcolor" ng-model="SupprtLevel" style="width: 465px;"
               formControlName="SupportLevelID">
-              <option value={{sl.ID}} *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
+              
+              <option value={{sl.ID}} [selected]="true"  *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
             </select>
           </div>
         </div>
@@ -109,8 +113,8 @@
         <tbody class="div">
           <tr *ngFor="let dg of Tabledata" >
 
-            <td style="width: 250px;">{{dg.AppTitle}}</td>
             <td style="width: 250px;">{{dg.PrcCaption}}</td>
+            <td style="width: 250px;">{{dg.AppTitle}}</td>
             <td style="width: 250px;">{{dg.Support}}</td>
           </tr>
         </tbody>
@@ -128,8 +132,8 @@
         <tbody class="div">
           <tr *ngFor="let dg of Tabledata" >
             <td style="width: 250px;">{{dg.Portfolio}}</td>
-            <td style="width: 250px;">{{dg.AppTitle}}</td>
             <td style="width: 250px;">{{dg.PrcCaption}}</td>
+            <td style="width: 250px;">{{dg.AppTitle}}</td>
             <td style="width: 250px;">{{dg.Support}}</td>
           </tr>
         </tbody>

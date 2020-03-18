@@ -1,6 +1,7 @@
 import { Component, OnInit,Injectable, ElementRef,ViewChild } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import html2canvas from 'html2canvas';
+import * as jspdf from 'jspdf';
 
 
 @Component({
@@ -16,11 +17,15 @@ export class PaceLayerChartComponent implements OnInit {
   @ViewChild('screen') screen: ElementRef;
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('downloadLink') downloadLink: ElementRef;
+  @ViewChild('takingfordata') takingfordata:ElementRef;
   downloadImage(){
-    html2canvas(document.body).then(canvas => {
+    html2canvas(document.body,{allowTaint : true}).then(canvas => {
+      
+      this.takingfordata.nativeElement.style.transform="rotateX(-10deg) translateZ(80px)";
       this.canvas.nativeElement.src = canvas.toDataURL();
-      this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
       this.downloadLink.nativeElement.download = 'PaceLayer-diagram.png';
+      this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+      this.downloadLink.nativeElement.target = '_blank';
       this.downloadLink.nativeElement.click();
   
     });

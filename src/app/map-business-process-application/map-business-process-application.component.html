@@ -11,7 +11,7 @@
   <div></div>
   <br>
 
-  <form [formGroup]="mapbusForm" (ngSubmit)="onSubmit()"
+  <form [formGroup]="form" (ngSubmit)="onSubmit()"
     style="width: 1170px;margin-left: 90px; background-color: #fff;border: #31708F solid 1px;margin-top:-39px;">
 
     <div class="container" style="width: 1170px;">
@@ -33,15 +33,19 @@
       <br>
       <div class="row">
         <div class="col-sm-4 text-center ">
-         <strong> Portfolio / Domain:</strong>
+          <strong> Portfolio / Domain:</strong>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 form-group">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor" ng-model="defaultdata" formControlName="PortfolioID"
-              style="width: 465px;" (change)="Onchangedropdown($event.target.value)">
-              
-              <option *ngFor="let m of mapData" [selected]="true"   value={{m.ID}} >{{m.Portfolio}}</option>
+            <select required class="btn btn-default textbackgroundcolor"
+             formControlName="PortfolioID" ng-model="mapData" style="width: 465px;"
+              (change)="Onchangedropdown($event.target.value)" [ngClass]="{ 'is-invalid': submitted && f.PortfolioID.errors }">
+
+              <option *ngFor="let m of mapData;" value={{m.ID}}>{{m.Portfolio}}</option>
             </select>
+            <div *ngIf="submitted && f.PortfolioID.errors" class="invalid-feedback">
+              <div *ngIf="f.PortfolioID.errors.required">PortfolioID is required</div>
+          </div>
           </div>
         </div>
       </div>&nbsp;
@@ -49,13 +53,17 @@
         <div class="col-sm-4 text-center">
           <strong> Application Name:</strong>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 form-group">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor"  ng-model="ApplicationData" formControlName="ApplicationID"
-              style="width: 465px;">
-              
-              <option value={{app.ID}} [selected]="true"  *ngFor="let app of ApplicationData">{{app.appTitle}}</option>
+            <select required class="btn btn-default textbackgroundcolor" 
+             formControlName="ApplicationID" ng-model="ApplicationData"
+              style="width: 465px;" [ngClass]="{ 'is-invalid': submitted && f.ApplicationID.errors }">
+
+              <option *ngFor="let app of ApplicationData; let j=index" value={{app.ID}}>{{app.appTitle}}</option>
             </select>
+            <div *ngIf="submitted && f.ApplicationID.errors" class="invalid-feedback">
+              <div *ngIf="f.ApplicationID.errors.required">ApplicationID is required</div>
+          </div>
 
           </div>
         </div>
@@ -64,40 +72,45 @@
         <div class="col-sm-4 text-center">
           <strong>Business Process:</strong>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 form-group">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor" ng-model="BPData" style="width: 465px;" formControlName="BPID">
+            <select required class="btn btn-default textbackgroundcolor" 
+             formControlName="BPID" ng-model="BPData" style="width: 465px;" [ngClass]="{ 'is-invalid': submitted && f.BPID.errors }">
               
-              <option value={{bp.ID}} [selected]="true"   *ngFor="let bp of BPData">{{bp.PrcCaption}}</option>
+              <option *ngFor="let bp of BPData; let k=index" value={{bp.ID}}>{{bp.PrcCaption}}</option>
             </select>
-
+            <div *ngIf="submitted && f.BPID.errors" class="invalid-feedback">
+              <div *ngIf="f.BPID.errors.required">BPID is required</div>
+          </div>
           </div>
         </div>
       </div>&nbsp;
       <div class="row">
         <div class="col-sm-4 text-center">
-         <strong> Support Level:</strong>
+          <strong> Support Level:</strong>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 form-group">
           <div ng-app="mainApp" ng-controller="mainCtrl">
-            <select required class="btn btn-default textbackgroundcolor" ng-model="SupprtLevel" style="width: 465px;"
-              formControlName="SupportLevelID">
-              
-              <option value={{sl.ID}} [selected]="true"  *ngFor="let sl of SupportLevel">{{sl.Caption}}</option>
+            <select required class="btn btn-default textbackgroundcolor"
+             formControlName="SupportLevelID" ng-model="SupprtLevel" style="width: 465px;" [ngClass]="{ 'is-invalid': submitted && f.SupportLevelID.errors }">
+              <option *ngFor="let sl of SupportLevel; let m = index" value={{sl.ID}}>{{sl.Caption}}</option>
             </select>
+            <div *ngIf="submitted && f.SupportLevelID.errors" class="invalid-feedback">
+              <div *ngIf="f.SupportLevelID.errors.required">SupportLevelID is required</div>
+          </div>
           </div>
         </div>
         <div class="col-sm-2">
           <button type="submit" class="btn btn-primary" style="width: 120px;background-color: #31708F">
-           <strong>Add Process!</strong> 
+            <strong>Add Process!</strong>
           </button>
         </div>
       </div>
-<hr>
+      <hr>
       <div class="row">
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
-          
+
         </div>
       </div>
       <!--Table for display data-->
@@ -111,7 +124,7 @@
           </tr>
         </thead>
         <tbody class="div">
-          <tr *ngFor="let dg of Tabledata" >
+          <tr *ngFor="let dg of Tabledata">
 
             <td style="width: 250px;">{{dg.PrcCaption}}</td>
             <td style="width: 250px;">{{dg.AppTitle}}</td>
@@ -130,7 +143,7 @@
           </tr>
         </thead>
         <tbody class="div">
-          <tr *ngFor="let dg of Tabledata" >
+          <tr *ngFor="let dg of Tabledata">
             <td style="width: 250px;">{{dg.Portfolio}}</td>
             <td style="width: 250px;">{{dg.PrcCaption}}</td>
             <td style="width: 250px;">{{dg.AppTitle}}</td>
@@ -140,7 +153,7 @@
 
       </table>
 
-      
+
     </div>
     <div style="margin-bottom: 50px;">
     </div>

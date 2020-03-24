@@ -15,11 +15,11 @@ import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.com
 import { TimeplotComponent } from './timeplot/timeplot.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
+
 import { EditProcessComponent } from './edit-process/edit-process.component';
-=======
-import { HttpModule } from '@angular/http';
->>>>>>> 0de0cf985c662522730bfeb08eb0a3677d264b00
+
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { HttpModule } from '@angular/http';
   imports: [
     BrowserModule,
     DropdownModule,// dropdown support
-    HttpClientModule,HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     HighchartsChartModule,
     ReactiveFormsModule,

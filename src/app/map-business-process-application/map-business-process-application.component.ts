@@ -172,7 +172,7 @@ console.log(data)
       this.posts = data;
       alert('Record added successfully.');
       console.log(this.posts)
-      this.Onchangedropdown(this.mapbusForm.value.PortfolioID);
+      this.Onchangedropdown(this.form.value.PortfolioID);
       // show data in console
     }, (error: Response) => {
       if (error.status === 424)

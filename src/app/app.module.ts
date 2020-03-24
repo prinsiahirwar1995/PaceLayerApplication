@@ -14,6 +14,7 @@ import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.com
 import { TimeplotComponent } from './timeplot/timeplot.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { EditProcessComponent } from './edit-process/edit-process.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
     ConfigAppComponent,
     ConfigTopAppComponent,
     MenusComponent,
-    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, TimeplotComponent ],
+    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, TimeplotComponent, EditProcessComponent ],
   imports: [
     BrowserModule,
     DropdownModule,// dropdown support

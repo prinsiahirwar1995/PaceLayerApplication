@@ -5,11 +5,13 @@ import {MapBusinessProcessApplicationComponent} from './map-business-process-app
 import { PaceLayerChartComponent } from './pace-layer-chart/pace-layer-chart.component';
 import {TimeplotComponent} from './timeplot/timeplot.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { EditProcessComponent } from './edit-process/edit-process.component';
 const routes: Routes = [
     { path: 'InventoryApplications', component: ConfigAppComponent},
     {path: 'mapbusinessprocessapplication', component: MapBusinessProcessApplicationComponent},
     {path:'paceLayerchart',component:PaceLayerChartComponent},
-    {path:'timeplot',component:TimeplotComponent}
+    {path:'timeplot',component:TimeplotComponent},
+    {path:'EditProcess',component:EditProcessComponent}
   ];
   @NgModule({
     imports: [RouterModule.forRoot(routes), NgxSpinnerModule],
@@ -19,4 +21,4 @@ const routes: Routes = [
   })
 
   export class AppRoutingModule { }
-  export const routingComponents = [ConfigAppComponent,MapBusinessProcessApplicationComponent,PaceLayerChartComponent,TimeplotComponent]
+  export const routingComponents = [ConfigAppComponent,MapBusinessProcessApplicationComponent,PaceLayerChartComponent,TimeplotComponent,EditProcessComponent]

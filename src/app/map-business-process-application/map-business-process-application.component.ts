@@ -1,15 +1,12 @@
 import { Component, OnInit, Injectable, ViewChild, ElementRef } from '@angular/core';
 
-import { DropdownModule } from 'primeng/dropdown';
-
-import { FormGroup, FormBuilder,Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { concat } from 'rxjs';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
-import { HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-import { viewClassName } from '@angular/compiler';
 
 @Component({
 
@@ -28,29 +25,26 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   title = 'PaceLayerUI';
   form: FormGroup;
   submitted = false;
-  // oppoSuitsForm: FormGroup
-
-  //submitted = false;private formBuilder: FormBuilder,
-
   selectedApplication: number;
 
   mapData: any;//[];
-  
+
   BPData: any;//[];
 
   ApplicationData: any[];
 
   SupportLevel: any[];
 
-  Dataforgrid: any[];
+  DataforDdlgrid: any[];
 
   Tabledata: any[];
   sPath: string;
-  
-  constructor(public fb: FormBuilder, private httpService: HttpClient) {
+  supid: any;
+  id: any;
+  constructor(public fb: FormBuilder, private httpService: HttpClient,private router: Router) {
 
     this.sPath = "http://pacelayerapi.azurewebsites.net/masterApi/";
-    
+
 
   }
 
@@ -59,39 +53,43 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   @ViewChild('lblMessage') lblMessage: ElementRef;
 
   Onchangedropdown(val) {
-    
-    
+
+
     //alert(val);
     return this.httpService.get(this.sPath + "applications/" + val).subscribe(application => {
 
       this.httpService.get(this.sPath + "getApplBProcess/get/" + val)
         .subscribe(dg => {
-         
+
           this.ApplicationData = application[0];//fill data from api to mapdata   
 
           this.Tabledata = dg[1];
-
+          
           this.tableforddl.nativeElement.style.display = 'table';
           this.tablewithoutddl.nativeElement.style.visibility = 'hidden';
-          console.log(this.ApplicationData[0])
-          console.log(dg[1].ApplicationID)
+
+
         });
 
     });
-    
 
 
+
+  }
+
+  OnchangeAppdropdown(val1) {
+    console.log(val1);
   }
 
   ngOnInit() {
 
     this.form = this.fb.group({
-      PortfolioID: new FormControl('',Validators.required) ,
-      ApplicationID: new FormControl('',Validators.required),
-      BPID: new FormControl('',Validators.required),
-      SupportLevelID: new FormControl('',Validators.required)
+      PortfolioID: new FormControl('', Validators.required),
+      ApplicationID: new FormControl('', Validators.required),
+      BPID: new FormControl('', Validators.required),
+      SupportLevelID: new FormControl('', Validators.required)
     })
-    
+
     this.httpService.get(this.sPath + "portfolios").subscribe(portfoliodata => {
 
       this.httpService.get(this.sPath + "BProcess").subscribe(bpdata => {
@@ -101,14 +99,14 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
           this.httpService.get(this.sPath + "getApplBProcess/all/0").subscribe(tabledata => {
 
             this.mapData = portfoliodata[0];//fill data from api to mapdata
-            
+
             this.BPData = bpdata[0];//fill data from api to mapdata
-            
-            
+
+
             this.SupportLevel = supportlevel[0];//fill data from api to mapdata
-          
+
             this.Tabledata = tabledata[1];
-             
+
           });
 
         });
@@ -116,18 +114,11 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
       });
 
     });
-    
-    
+
+
   }
-
-  // convenience getter for easy access to form fields
-
-  /*get f() { return this.MapBusinessProcessForm.controls; }
-  
-  */
-  //
   posts: any;
-
+  deleteposts: any;
   mapbusForm = this.fb.group({
 
     PortfolioID: [''],
@@ -140,16 +131,17 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
 
   })
 
-// convenience getter for easy access to form fields
-get f() { return this.form.controls; }
+  // convenience getter for easy access to form fields
+  get f() { return this.form.controls; }
 
   onSubmit() {
-    
+
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
-  }
+    }
+
     let headers = new HttpHeaders();
     headers = new HttpHeaders(
       {
@@ -164,17 +156,19 @@ get f() { return this.form.controls; }
       , "BprocessID": this.form.value.BPID, "SupportOptionID": this.form.value.SupportLevelID
     };
 
-console.log(data)
 
     return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/addport/", data, { headers: headers }).subscribe(data => {
 
 
       this.posts = data;
-      alert('Record added successfully.');
-      console.log(this.posts)
+
+      if (this.posts.status === 'succes') {
+        alert('Record added successfully.');
+      }
       this.Onchangedropdown(this.form.value.PortfolioID);
       // show data in console
     }, (error: Response) => {
+
       if (error.status === 424)
         alert('This Process is Already Added!!!');
       else
@@ -183,6 +177,119 @@ console.log(data)
     });
   }
 
+  //for deletion
+  selected: any;
+  deletedata:any;
+  DeleteToDo(selected) {
+
+    if(window.confirm('Are sure you want to delete this item ?')){
+    let headers = new HttpHeaders();
+    headers = new HttpHeaders(
+      {
+
+        'Content-Type': 'application/json',
+
+      });
+    var data = {
+
+      "PortfolioID": this.Tabledata[selected].ProcID, "ApplicationID": this.Tabledata[selected].AppID
+
+      , "BprocessID": this.Tabledata[selected].ProcID, "SupportOptionID": this.Tabledata[selected].SuppOptionID
+    };
+    
+
+    return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/DelPort/", data, { headers: headers }).subscribe(
+
+      data => {
+
+        this.deletedata = data;
+        this.Onchangedropdown(this.Tabledata[selected].ProcID);
+        
+        if(this.deletedata.status === 'succes'){
+          alert('Record updated successfully.')
+          }
+      },
+
+      error => {
+
+        console.log("Error", error);
+
+      }
+
+    );
+
+  }
+
+  }
+  
+  OnUpdateSupport(supid){
+    this.id=supid-1;
+    
+  }
+  updatedata:any;
+  EditToDo(event){
+
+if(this.id == undefined){
+
+  var data = {
+
+    "PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
+
+    , "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.Tabledata[event].SuppOptionID
+  };
+}
+else{
+  
+  
+  var data = {
+
+    "PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
+
+    , "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.SupportLevel[this.id].ID
+  };
+}
+    let headers = new HttpHeaders();
+    headers = new HttpHeaders(
+      {
+
+        'Content-Type': 'application/json',
+
+      });
+      //this.OnUpdateSupport(event);
+    //var data = {
+
+      //"PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
+
+      //, "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.Tabledata[event].SuppOptionID
+    //};
+    
+    
+
+    return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/EditPort/", data, { headers: headers }).subscribe(
+
+      update => {
+         this.updatedata = update
+        
+        this.OnchangeAppdropdown(this.Tabledata[event].ProcID);
+        
+        if(this.updatedata.status === 'succes'){
+        alert('Record updated successfully.')
+        }
+      },
+
+      error => {
+
+        console.log("Error", error);
+
+      }
+      
+
+    );
+//this.router.navigate(['/EditProcess']).then(success => console.log('navigation success?', success))
+//.catch(console.error);
+
+  }
+ 
 
 
 

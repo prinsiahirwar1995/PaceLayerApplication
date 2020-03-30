@@ -17,7 +17,7 @@ import { TimeplotComponent } from './timeplot/timeplot.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { EditProcessComponent } from './edit-process/edit-process.component';
+
 
 
 
@@ -28,7 +28,7 @@ import { EditProcessComponent } from './edit-process/edit-process.component';
     ConfigAppComponent,
     ConfigTopAppComponent,
     MenusComponent,
-    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, TimeplotComponent, EditProcessComponent ],
+    MapBusinessProcessApplicationComponent,routingComponents, PaceLayerChartComponent, TimeplotComponent ],
   imports: [
     BrowserModule,
     DropdownModule,// dropdown support

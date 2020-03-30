@@ -21,7 +21,7 @@ export class PaceLayerChartComponent implements OnInit {
   downloadImage(){
     html2canvas(document.body,{allowTaint : true}).then(canvas => {
       
-      this.takingfordata.nativeElement.style.transform="rotateX(-10deg) translateZ(80px)";
+      //this.takingfordata.nativeElement.style.transform="rotateX(-10deg) translateZ(80px)";
       this.canvas.nativeElement.src = canvas.toDataURL();
       this.downloadLink.nativeElement.download = 'PaceLayer-diagram.png';
       this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');

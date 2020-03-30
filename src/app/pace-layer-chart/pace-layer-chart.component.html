@@ -11,7 +11,7 @@
     
     <div>
         <button (click)="downloadImage()" type="button" style="margin-right:5px; float: right;" 
-                        class="btn btn-primary">Copy to  Clipboard</button>
+                        class="btn btn-primary">Export</button>
     </div>
     <table #screen id="table">
     <div class="scene mainContainer"> 
@@ -36,7 +36,7 @@
         </div>
         
     </div>
-
+   
     <div class="scene mainContainer">
         <div class="appContainer1">
             <div  *ngFor="let cv of chartdata">
@@ -58,7 +58,7 @@
             <div class="box__face box__face--bottom category2-caption" >System of Differentiation</div>
         </div>
     </div>
-    <br>&nbsp;
+    <div style="margin-bottom: 100px;"></div>
     <div class="scene mainContainer">
         <div class="appContainer2">
         <div *ngFor="let cv of chartdata">

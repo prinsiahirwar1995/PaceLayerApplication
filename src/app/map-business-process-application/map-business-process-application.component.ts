@@ -26,7 +26,10 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   selectedApplication: number;
-
+  isShow = false;
+  Showlbl = true;
+  showUpdatebtn = false;
+  Editbtn = true;
   mapData: any;//[];
 
   BPData: any;//[];
@@ -51,6 +54,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   @ViewChild('tableforddl') tableforddl: ElementRef;
   @ViewChild('tablewithoutddl') tablewithoutddl: ElementRef;
   @ViewChild('lblMessage') lblMessage: ElementRef;
+  
 
   Onchangedropdown(val) {
 
@@ -90,6 +94,8 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
       SupportLevelID: new FormControl('', Validators.required)
     })
 
+
+
     this.httpService.get(this.sPath + "portfolios").subscribe(portfoliodata => {
 
       this.httpService.get(this.sPath + "BProcess").subscribe(bpdata => {
@@ -106,7 +112,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
             this.SupportLevel = supportlevel[0];//fill data from api to mapdata
 
             this.Tabledata = tabledata[1];
-
+            
           });
 
         });
@@ -117,6 +123,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
 
 
   }
+  
   posts: any;
   deleteposts: any;
   mapbusForm = this.fb.group({
@@ -182,7 +189,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   deletedata:any;
   DeleteToDo(selected) {
 
-    if(window.confirm('Are sure you want to delete this item ?')){
+    if(window.confirm('Are you sure want to delete this record ?')){
     let headers = new HttpHeaders();
     headers = new HttpHeaders(
       {
@@ -198,16 +205,17 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
     };
     
 
-    return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/DelPort/", data, { headers: headers }).subscribe(
-
-      data => {
+    return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/DelPort/", data, { headers: headers }).subscribe(data => {
+      this.httpService.get(this.sPath + "getApplBProcess/all/0").subscribe(tabledata => {
 
         this.deletedata = data;
-        this.Onchangedropdown(this.Tabledata[selected].ProcID);
-        
         if(this.deletedata.status === 'succes'){
-          alert('Record updated successfully.')
+          alert('Record deleted successfully.')
           }
+          this.Tabledata = tabledata[1];
+        })
+          
+          
       },
 
       error => {
@@ -227,70 +235,69 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
     
   }
   updatedata:any;
-  EditToDo(event){
-
-if(this.id == undefined){
-
-  var data = {
-
-    "PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
-
-    , "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.Tabledata[event].SuppOptionID
-  };
-}
-else{
-  
-  
-  var data = {
-
-    "PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
-
-    , "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.SupportLevel[this.id].ID
-  };
-}
-    let headers = new HttpHeaders();
-    headers = new HttpHeaders(
-      {
-
-        'Content-Type': 'application/json',
-
-      });
-      //this.OnUpdateSupport(event);
-    //var data = {
-
-      //"PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
-
-      //, "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.Tabledata[event].SuppOptionID
-    //};
+  UpdateSupportLevel(event){
     
+    if(this.id == undefined){
+
+      var data = {
     
-
-    return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/EditPort/", data, { headers: headers }).subscribe(
-
-      update => {
-         this.updatedata = update
-        
-        this.OnchangeAppdropdown(this.Tabledata[event].ProcID);
-        
-        if(this.updatedata.status === 'succes'){
-        alert('Record updated successfully.')
-        }
-      },
-
-      error => {
-
-        console.log("Error", error);
-
-      }
+        "PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
+    
+        , "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.Tabledata[event].SuppOptionID
+      };
+    }
+    else{
       
+      
+      var data = {
+    
+        "PortfolioID": this.Tabledata[event].ProcID, "ApplicationID": this.Tabledata[event].AppID
+    
+        , "BprocessID": this.Tabledata[event].ProcID, "SupportOptionID": this.SupportLevel[this.id].ID
+      };
+    }
+        let headers = new HttpHeaders();
+        headers = new HttpHeaders(
+          {
+    
+            'Content-Type': 'application/json',
+    
+          });
+          
+        return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/EditPort/", data, { headers: headers }).subscribe(
+    
+          update => {
+             this.updatedata = update
+            
+            this.OnchangeAppdropdown(this.Tabledata[event].ProcID);
+            
+            if(this.updatedata.status === 'succes'){
+            alert('Record updated successfully.')
+            }
+          },
+    
+          error => {
+    
+            console.log("Error", error);
+    
+          }
+          
+    
+        );
+    //this.router.navigate(['/EditProcess']).then(success => console.log('navigation success?', success))
+    //.catch(console.error);
+    
+      }
+    
+    
 
-    );
-//this.router.navigate(['/EditProcess']).then(success => console.log('navigation success?', success))
-//.catch(console.error);
-
+  
+  EditToDo(){
+    
+    
+    this.isShow = !this.isShow;
+    this.Showlbl = false;
+    this.showUpdatebtn = true;
+    this.Editbtn = false;
   }
- 
-
-
-
 }

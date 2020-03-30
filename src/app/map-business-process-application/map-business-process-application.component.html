@@ -138,8 +138,9 @@
             </td>
             <td style="width: 250px;">{{dg.AppTitle}}</td>
             <td style="width: 250px;">{{dg.PrcCaption}}</td>
-            <td style="width: 250px;">
-              <select  class="btn btn-default textbackgroundcolor" 
+            <td *ngIf="Showlbl" >{{dg.Support}}</td>
+            <td style="width: 250px;" *ngIf="isShow" >
+              <select  class="btn btn-default textbackgroundcolor"  
               (change)="OnUpdateSupport($event.target.value)"
               formControlName="SupportLevelID" ng-model="SupprtLevel" style="width: 250px;">
                 <option value="">{{dg.Support}}</option>
@@ -147,9 +148,12 @@
               </select>
             </td>
             <td style="width: 150px;"> <button class="btn btn-primary" (click)="DeleteToDo(j)"> <i class="fa fa-trash"></i></button>
-              <button type="button" class="btn btn-primary" (click)="EditToDo(j)" style="margin-left: 20px;">
+              <button *ngIf="Editbtn" type="button" class="btn btn-primary"  (click)="EditToDo()" style="margin-left: 20px;">
                 <span class="glyphicon glyphicon-edit"></span></button>
+                <button *ngIf="showUpdatebtn" class="btn btn-primary" (click)="UpdateSupportLevel(j)" style="margin-left: 20px;"> 
+                  <span class="glyphicon glyphicon-edit"></span></button>
             </td>
+            
           </tr>
         </tbody>
 
@@ -174,8 +178,9 @@
             </td>
             <td style="width: 250px;" class="form-group">{{dg.PrcCaption}}
             </td>
-            <td style="width: 250px;" class="form-group">
-              <select  class="btn btn-default textbackgroundcolor" (change)="OnUpdateSupport($event.target.value)"
+            <td *ngIf="Showlbl">{{dg.Support}}</td>
+            <td style="width: 250px;" class="form-group" *ngIf="isShow">
+              <select  class="btn btn-default textbackgroundcolor"  (change)="OnUpdateSupport($event.target.value)"
               formControlName="SupportLevelID" ng-model="SupprtLevel" style="width: 250px;">
                 <option value="">{{dg.Support}}</option>
                 <option *ngFor="let sl of SupportLevel; let m = index" value={{sl.ID}}>{{sl.Caption}}</option>
@@ -183,9 +188,12 @@
             </td>
             <td style="width: 150px;"> <button class="btn btn-primary" (click)="DeleteToDo(i)"> 
               <i class="fa fa-trash"></i></button>
-              <button  type="button" class="btn btn-primary" (click)="EditToDo(i)"  style="margin-left: 20px;">
+              <button *ngIf="Editbtn"  type="button" class="btn btn-primary"  (click)="EditToDo()"  style="margin-left: 20px;">
                 <span class="glyphicon glyphicon-edit"></span></button>
+                <button *ngIf="showUpdatebtn" class="btn btn-primary" (click)="UpdateSupportLevel(i)" style="margin-left: 20px;"> 
+                  <span class="glyphicon glyphicon-edit"></span></button>
             </td>
+            
           </tr>
         </tbody>
 

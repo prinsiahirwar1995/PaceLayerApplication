@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 import {AppRoutingModule,routingComponents} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConfigAppComponent } from './config-app/config-app.component';
@@ -35,7 +36,7 @@ import { EditProcessComponent } from './edit-process/edit-process.component';
     AppRoutingModule,
     HighchartsChartModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,HttpModule
     //CommonModule
   ],
   providers: [

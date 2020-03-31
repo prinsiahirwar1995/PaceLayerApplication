@@ -46,7 +46,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   id: any;
   constructor(public fb: FormBuilder, private httpService: HttpClient,private router: Router) {
 
-    this.sPath = "http://pacelayerapi.azurewebsites.net/masterApi/";
+    this.sPath = "https://pacelayerapi.azurewebsites.net/masterApi/";
 
 
   }
@@ -164,7 +164,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
     };
 
 
-    return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/addport/", data, { headers: headers }).subscribe(data => {
+    return this.httpService.post(this.sPath +"addport/", data, { headers: headers }).subscribe(data => {
 
 
       this.posts = data;
@@ -205,7 +205,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
     };
     
 
-    return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/DelPort/", data, { headers: headers }).subscribe(data => {
+    return this.httpService.post(this.sPath +"DelPort/", data, { headers: headers }).subscribe(data => {
       this.httpService.get(this.sPath + "getApplBProcess/all/0").subscribe(tabledata => {
 
         this.deletedata = data;
@@ -264,7 +264,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
     
           });
           
-        return this.httpService.post("http://pacelayerapi.azurewebsites.net/masterApi/EditPort/", data, { headers: headers }).subscribe(
+        return this.httpService.post(this.sPath+"EditPort/", data, { headers: headers }).subscribe(
     
           update => {
              this.updatedata = update

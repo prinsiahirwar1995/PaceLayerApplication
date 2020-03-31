@@ -37,7 +37,7 @@ chartdata : any[];
   
   ngOnInit() {
 
-    this.httpService.get("http://pacelayerapi.azurewebsites.net/masterApi/ApplLayerState")
+    this.httpService.get("https://pacelayerapi.azurewebsites.net/masterApi/ApplLayerState")
     .subscribe(
       portfoliodata => {
         

@@ -80,6 +80,12 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
   sPath: string;
   supid: any;
   id: any;
+<<<<<<< HEAD
+=======
+  constructor(public fb: FormBuilder, private httpService: HttpClient,private router: Router) {
+
+    this.sPath = "https://pacelayerapi.azurewebsites.net/masterApi/";
+>>>>>>> 6ac04d2295947419096eca6f0e72e56cdb4b6bed
 
   constructor(public fb: FormBuilder, private httpService: HttpClient, private router: Router) {
 
@@ -193,6 +199,14 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
 
       "PortfolioID": this.form.value.PortfolioID, "ApplicationID": this.form.value.ApplicationID
       , "BprocessID": this.form.value.BPID, "SupportOptionID": this.form.value.SupportLevelID
+<<<<<<< HEAD
+=======
+    };
+
+
+    return this.httpService.post(this.sPath +"addport/", data, { headers: headers }).subscribe(data => {
+
+>>>>>>> 6ac04d2295947419096eca6f0e72e56cdb4b6bed
 
     };
     return this.httpService.post(this.sPath + "addport/", data, { headers: headers }).subscribe(data => {
@@ -254,9 +268,14 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
         this.httpService.get(this.sPath + "getApplBProcess/all/0").subscribe(tabledata => {
           this.deletedata = data;
 
+<<<<<<< HEAD
           if (this.deletedata.status === 'succes') {
 
             alert('Record deleted successfully.')
+=======
+    return this.httpService.post(this.sPath +"DelPort/", data, { headers: headers }).subscribe(data => {
+      this.httpService.get(this.sPath + "getApplBProcess/all/0").subscribe(tabledata => {
+>>>>>>> 6ac04d2295947419096eca6f0e72e56cdb4b6bed
 
           }
 
@@ -304,6 +323,7 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
       };
 
     }
+<<<<<<< HEAD
 
     let headers = new HttpHeaders();
 
@@ -337,6 +357,39 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
       },
       error => {
         console.log("Error", error);
+=======
+        let headers = new HttpHeaders();
+        headers = new HttpHeaders(
+          {
+    
+            'Content-Type': 'application/json',
+    
+          });
+          
+        return this.httpService.post(this.sPath+"EditPort/", data, { headers: headers }).subscribe(
+    
+          update => {
+             this.updatedata = update
+            
+            this.OnchangeAppdropdown(this.Tabledata[event].ProcID);
+            
+            if(this.updatedata.status === 'succes'){
+            alert('Record updated successfully.')
+            }
+          },
+    
+          error => {
+    
+            console.log("Error", error);
+    
+          }
+          
+    
+        );
+    //this.router.navigate(['/EditProcess']).then(success => console.log('navigation success?', success))
+    //.catch(console.error);
+    
+>>>>>>> 6ac04d2295947419096eca6f0e72e56cdb4b6bed
       }
     );
 

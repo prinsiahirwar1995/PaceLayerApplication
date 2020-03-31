@@ -41,7 +41,7 @@
             <select required class="btn btn-default textbackgroundcolor" formControlName="PortfolioID"
               ng-model="mapData" style="width: 465px;" (change)="Onchangedropdown($event.target.value)"
               [ngClass]="{ 'is-invalid': submitted && f.PortfolioID.errors }">
-
+              <option value="" >--Select--</option>
               <option *ngFor="let m of mapData;" value={{m.ID}}>{{m.Portfolio}}</option>
             </select>
             <div *ngIf="submitted && f.PortfolioID.errors" class="invalid-feedback">
@@ -59,7 +59,7 @@
             <select required class="btn btn-default textbackgroundcolor" formControlName="ApplicationID"
               ng-model="ApplicationData" (change)="OnchangeAppdropdown($event.target.value)" style="width: 465px;"
               [ngClass]="{ 'is-invalid': submitted && f.ApplicationID.errors }">
-
+              <option value="">--Select--</option>
               <option *ngFor="let app of ApplicationData; let j=index" value={{app.ID}}>{{app.appTitle}}</option>
             </select>
             <div *ngIf="submitted && f.ApplicationID.errors" class="invalid-feedback">
@@ -77,7 +77,7 @@
           <div ng-app="mainApp" ng-controller="mainCtrl">
             <select required class="btn btn-default textbackgroundcolor" formControlName="BPID" ng-model="BPData"
               style="width: 465px;" [ngClass]="{ 'is-invalid': submitted && f.BPID.errors }">
-
+              <option value="">--Select--</option>
               <option *ngFor="let bp of BPData; let k=index" value={{bp.ID}}>{{bp.PrcCaption}}</option>
             </select>
             <div *ngIf="submitted && f.BPID.errors" class="invalid-feedback">
@@ -95,6 +95,7 @@
             <select required class="btn btn-default textbackgroundcolor" formControlName="SupportLevelID"
               ng-model="SupprtLevel" style="width: 465px;"
               [ngClass]="{ 'is-invalid': submitted && f.SupportLevelID.errors }">
+              <option value="">--Select--</option>
               <option *ngFor="let sl of SupportLevel; let m = index" value={{sl.ID}}>{{sl.Caption}}</option>
             </select>
             <div *ngIf="submitted && f.SupportLevelID.errors" class="invalid-feedback">
@@ -138,8 +139,9 @@
             </td>
             <td style="width: 250px;">{{dg.AppTitle}}</td>
             <td style="width: 250px;">{{dg.PrcCaption}}</td>
-            <td *ngIf="Showlbl" >{{dg.Support}}</td>
-            <td style="width: 250px;" *ngIf="isShow" >
+             <td [hidden]="dg.isEditable" >{{dg.Support}}</td> 
+            
+            <td style="width: 250px;" [hidden]="!dg.isEditable" >
               <select  class="btn btn-default textbackgroundcolor"  
               (change)="OnUpdateSupport($event.target.value)"
               formControlName="SupportLevelID" ng-model="SupprtLevel" style="width: 250px;">
@@ -148,9 +150,9 @@
               </select>
             </td>
             <td style="width: 150px;"> <button class="btn btn-primary" (click)="DeleteToDo(j)"> <i class="fa fa-trash"></i></button>
-              <button *ngIf="Editbtn" type="button" class="btn btn-primary"  (click)="EditToDo()" style="margin-left: 20px;">
-                <span class="glyphicon glyphicon-edit"></span></button>
-                <button *ngIf="showUpdatebtn" class="btn btn-primary" (click)="UpdateSupportLevel(j)" style="margin-left: 20px;"> 
+              <button *ngIf="!dg.isEditable" type="button" class="btn btn-primary"  (click)="dg.isEditable=!dg.isEditable" style="margin-left: 20px;">
+                <i class="fa fa-pencil"></i></button>
+                <button *ngIf="dg.isEditable" class="btn btn-primary" (click)="UpdateSupportLevel(j)" style="margin-left: 20px;"> 
                   <span class="glyphicon glyphicon-edit"></span></button>
             </td>
             
@@ -178,8 +180,8 @@
             </td>
             <td style="width: 250px;" class="form-group">{{dg.PrcCaption}}
             </td>
-            <td *ngIf="Showlbl">{{dg.Support}}</td>
-            <td style="width: 250px;" class="form-group" *ngIf="isShow">
+            <td  [hidden]="dg.isEditable">{{dg.Support}}</td>
+            <td style="width: 250px;" class="form-group" [hidden]="!dg.isEditable">
               <select  class="btn btn-default textbackgroundcolor"  (change)="OnUpdateSupport($event.target.value)"
               formControlName="SupportLevelID" ng-model="SupprtLevel" style="width: 250px;">
                 <option value="">{{dg.Support}}</option>
@@ -188,9 +190,9 @@
             </td>
             <td style="width: 150px;"> <button class="btn btn-primary" (click)="DeleteToDo(i)"> 
               <i class="fa fa-trash"></i></button>
-              <button *ngIf="Editbtn"  type="button" class="btn btn-primary"  (click)="EditToDo()"  style="margin-left: 20px;">
-                <span class="glyphicon glyphicon-edit"></span></button>
-                <button *ngIf="showUpdatebtn" class="btn btn-primary" (click)="UpdateSupportLevel(i)" style="margin-left: 20px;"> 
+              <button *ngIf="!dg.isEditable" class="btn btn-primary"  (click)="dg.isEditable=!dg.isEditable"  style="margin-left: 20px;">
+                <i class="fa fa-pencil"></i></button>
+                <button *ngIf="dg.isEditable" class="btn btn-primary" (click)="UpdateSupportLevel(i)" style="margin-left: 20px;"> 
                   <span class="glyphicon glyphicon-edit"></span></button>
             </td>
             

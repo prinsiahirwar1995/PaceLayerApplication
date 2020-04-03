@@ -319,11 +319,8 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
 
       });
 
-    return this.httpService.post(this.sPath + "EditPort/", data, { headers: headers }).subscribe(
-
-
-
-      update => {
+    return this.httpService.post(this.sPath + "EditPort/", data, { headers: headers }).subscribe(update => {
+      this.httpService.get(this.sPath + "getApplBProcess/all/0").subscribe(tabledata => {
 
         this.updatedata = update
 
@@ -338,49 +335,18 @@ export class MapBusinessProcessApplicationComponent implements OnInit {
           alert('Record updated successfully.')
 
         }
+        this.Tabledata = tabledata[1];
+      })
 
       },
       error => {
         console.log("Error", error);
-
-        let headers = new HttpHeaders();
-        headers = new HttpHeaders(
-          {
-    
-            'Content-Type': 'application/json',
-    
-          });
-          
-        return this.httpService.post(this.sPath+"EditPort/", data, { headers: headers }).subscribe(
-    
-          update => {
-             this.updatedata = update
-            
-            this.OnchangeAppdropdown(this.Tabledata[event].ProcID);
-            
-            if(this.updatedata.status === 'succes'){
-            alert('Record updated successfully.')
-            }
-          },
-    
-          error => {
-    
-            console.log("Error", error);
-    
-          }
-          
-    
-        );
     //this.router.navigate(['/EditProcess']).then(success => console.log('navigation success?', success))
     //.catch(console.error);
-    
-
       }
     );
 
-    //this.router.navigate(['/EditProcess']).then(success => console.log('navigation success?', success))
-
-    //.catch(console.error);
+    
   
   }
 EditToDo() {
@@ -393,6 +359,12 @@ EditToDo() {
 
     this.Editbtn = false;
 
+  }
+
+  cancel(){
+    this.httpService.get(this.sPath + "getApplBProcess/all/0").subscribe(tabledata => {
+      this.Tabledata = tabledata[1];
+      });
   }
 
 }
